@@ -1,0 +1,63 @@
+---
+auths:
+  public_v1:
+    version: 1
+  public_v2:
+    version: 2
+
+modules:
+  fg_full:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgVirtualDomain"
+      - "FORTINET-FORTIGATE-MIB::fgSystem"
+      - "FORTINET-FORTIGATE-MIB::fgMgmt" # Admins
+      - "FORTINET-FORTIGATE-MIB::fgIntf"
+      - "FORTINET-FORTIGATE-MIB::fgAntivirus"
+      - "FORTINET-FORTIGATE-MIB::fgIps"
+      - "FORTINET-FORTIGATE-MIB::fgApplications"
+      - "FORTINET-FORTIGATE-MIB::fgInetProto"
+      - "FORTINET-FORTIGATE-MIB::fgVpn"
+      - "FORTINET-FORTIGATE-MIB::fgHighAvailability"
+      - "FORTINET-FORTIGATE-MIB::fgWc"
+      - "FORTINET-FORTIGATE-MIB::fgUsbModemInfo"
+      # The following are not implemented yet
+      # - "FORTINET-FORTIGATE-MIB::fgFc"
+      # - "FORTINET-FORTIGATE-MIB::fgServerLoadBalance"
+      # - "FORTINET-FORTIGATE-MIB::fgDevice"
+      # - "FORTINET-FORTIGATE-MIB::fgMibConformance"
+  fg_virtualdomain:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgVirtualDomain"
+  fg_system:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgSystem"
+  fg_mgmt:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgMgmt"
+  fg_intf:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgIntf"
+  fg_antivirus:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgAntivirus"
+  fg_ips:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgIps"
+  fg_applications:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgApplications"
+  fg_inetproto:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgInetProto"
+  fg_vpn:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgVpn"
+  fg_highavailability:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgHighAvailability"
+  fg_wc:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgWc"
+  fg_usbmodeminfo:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgUsbModemInfo"
