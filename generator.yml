@@ -45,6 +45,7 @@ modules:
     walk:
       - "FORTINET-FORTIGATE-MIB::fgVirtualDomain"
       - "FORTINET-FORTIGATE-MIB::fgSystem"
+      - "FORTINET-FORTIGATE-MIB::fgFirewall"
       - "FORTINET-FORTIGATE-MIB::fgMgmt" # Admins
       - "FORTINET-FORTIGATE-MIB::fgIntf"
       - "FORTINET-FORTIGATE-MIB::fgAntivirus"
@@ -66,6 +67,9 @@ modules:
   fg_system:
     walk:
       - "FORTINET-FORTIGATE-MIB::fgSystem"
+  fg_firewall:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgFirewall"
   fg_mgmt:
     walk:
       - "FORTINET-FORTIGATE-MIB::fgMgmt"
