@@ -1364,6 +1364,811 @@ modules:
       oid: 1.3.6.1.4.1.12356.101.10.116.1.3
       type: counter
       help: Number of total LDAP connection failures - 1.3.6.1.4.1.12356.101.10.116.1.3
+  fg_firewall:
+    walk:
+    - 1.3.6.1.4.1.12356.101.5
+    metrics:
+    - name: fgFwPolID
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.1
+      type: gauge
+      help: Firewall policy ID - 1.3.6.1.4.1.12356.101.5.1.2.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolPktCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.2
+      type: counter
+      help: Number of packets matched to policy (passed or blocked, depending on policy
+        action) - 1.3.6.1.4.1.12356.101.5.1.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolByteCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.3
+      type: counter
+      help: Number of bytes in packets matching the policy - 1.3.6.1.4.1.12356.101.5.1.2.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolLastUsed
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.4
+      type: DisplayString
+      help: How many minutes since last used. - 1.3.6.1.4.1.12356.101.5.1.2.1.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolPktCountHc
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.5
+      type: counter
+      help: 64-bit Number of packets matched to policy (passed or blocked, depending
+        on policy action) - 1.3.6.1.4.1.12356.101.5.1.2.1.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolByteCountHc
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.6
+      type: counter
+      help: 64-bit Number of bytes in packets matching the policy - 1.3.6.1.4.1.12356.101.5.1.2.1.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwHsPolID
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.1
+      type: gauge
+      help: Firewall hyperscale-policy ID - 1.3.6.1.4.1.12356.101.5.1.2.3.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwHsPolPktCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.2
+      type: counter
+      help: Number of packets matched to policy (passed or blocked, depending on policy
+        action) - 1.3.6.1.4.1.12356.101.5.1.2.3.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwHsPolByteCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.3
+      type: counter
+      help: Number of bytes in packets matching the policy - 1.3.6.1.4.1.12356.101.5.1.2.3.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwHsPolLastUsed
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.4
+      type: DisplayString
+      help: How many minutes since last used. - 1.3.6.1.4.1.12356.101.5.1.2.3.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwUserNumber
+      oid: 1.3.6.1.4.1.12356.101.5.2.1.1
+      type: gauge
+      help: The number of user accounts in fgFwUserTable - 1.3.6.1.4.1.12356.101.5.2.1.1
+    - name: fgFwUserAuthTimeout
+      oid: 1.3.6.1.4.1.12356.101.5.2.1.2
+      type: gauge
+      help: Idle period after which a firewall-authentication user's session is automatically
+        expired - 1.3.6.1.4.1.12356.101.5.2.1.2
+    - name: fgFwUserIndex
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.1
+      type: gauge
+      help: An index for uniquely identifying the users in fgFwUserTable - 1.3.6.1.4.1.12356.101.5.2.2.1.1.1
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+    - name: fgFwUserName
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.2
+      type: DisplayString
+      help: User-name of the specified account - 1.3.6.1.4.1.12356.101.5.2.2.1.1.2
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+    - name: fgFwUserAuth
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.3
+      type: gauge
+      help: Type of authentication the account uses (local, RADIUS, LDAP, etc.) -
+        1.3.6.1.4.1.12356.101.5.2.2.1.1.3
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+      enum_values:
+        1: local
+        2: radiusSingle
+        3: radiusMultiple
+        4: ldap
+    - name: fgFwUserState
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.4
+      type: gauge
+      help: Status of the user account (enable/disable) - 1.3.6.1.4.1.12356.101.5.2.2.1.1.4
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+      enum_values:
+        1: disabled
+        2: enabled
+    - name: fgFwUserVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.5
+      type: gauge
+      help: Virtual domain the user account exists in - 1.3.6.1.4.1.12356.101.5.2.2.1.1.5
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+    - name: fgFwAuthUserInfoVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.1.1.1
+      type: gauge
+      help: Virtual domain index that uniquely identify rows in this table. - 1.3.6.1.4.1.12356.101.5.2.3.1.1.1
+      indexes:
+      - labelname: fgFwAuthUserInfoVdom
+        type: gauge
+    - name: fgFwAuthIpv4UserNumber
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.1.1.2
+      type: gauge
+      help: The number of authenticated IPv4 users in this virtual domain. - 1.3.6.1.4.1.12356.101.5.2.3.1.1.2
+      indexes:
+      - labelname: fgFwAuthUserInfoVdom
+        type: gauge
+    - name: fgFwAuthIpv6UserNumber
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.1.1.3
+      type: gauge
+      help: The number of authenticated IPv6 users in this virtual domain. - 1.3.6.1.4.1.12356.101.5.2.3.1.1.3
+      indexes:
+      - labelname: fgFwAuthUserInfoVdom
+        type: gauge
+    - name: fgFwAuthIpv4UserIndex
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.1
+      type: gauge
+      help: An index for uniquely identifying the users in fgFwAuthIpv4UserTable.
+        - 1.3.6.1.4.1.12356.101.5.2.3.2.1.1
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv4UserVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.2
+      type: gauge
+      help: Virtual domain the authenticated user exists in - 1.3.6.1.4.1.12356.101.5.2.3.2.1.2
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv4UserName
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.3
+      type: DisplayString
+      help: User-name of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.2.1.3
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv4UserType
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.4
+      type: gauge
+      help: Type of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.2.1.4
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+      enum_values:
+        0: fsso
+        1: rsso
+        2: ntlm
+        3: fw
+        4: wsso
+        5: fsspCitrix
+        6: ssoGuest
+        7: disclaimer
+        8: other
+        9: unauth
+        10: email
+    - name: fgFwAuthIpv4UserAddr
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.5
+      type: InetAddressIPv4
+      help: IPv4 address of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.2.1.5
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserIndex
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.1
+      type: gauge
+      help: An index for uniquely identifying the users in fgFwAuthIpv4UserTable.
+        - 1.3.6.1.4.1.12356.101.5.2.3.3.1.1
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.2
+      type: gauge
+      help: Virtual domain the authenticated user exists in - 1.3.6.1.4.1.12356.101.5.2.3.3.1.2
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserName
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.3
+      type: DisplayString
+      help: User-name of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.3.1.3
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserType
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.4
+      type: gauge
+      help: Type of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.3.1.4
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+      enum_values:
+        0: fsso
+        1: rsso
+        2: ntlm
+        3: fw
+        4: wsso
+        5: fsspCitrix
+        6: ssoGuest
+        7: disclaimer
+        8: other
+        9: unauth
+        10: email
+    - name: fgFwAuthIpv6UserAddr
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.5
+      type: OctetString
+      help: IPv6 address of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.3.1.5
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwIppStatsName
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.1
+      type: DisplayString
+      help: Name of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.1
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsType
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.2
+      type: DisplayString
+      help: Type of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.2
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsStartIp
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.3
+      type: InetAddressIPv4
+      help: Startip of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.3
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsEndIp
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.4
+      type: InetAddressIPv4
+      help: Endip of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.4
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsTotalSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.5
+      type: gauge
+      help: Total session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.5
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsTcpSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.6
+      type: gauge
+      help: Tcp session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.6
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsUdpSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.7
+      type: gauge
+      help: Udp session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.7
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsOtherSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.8
+      type: gauge
+      help: Other session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.8
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsTotalPBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.9
+      type: gauge
+      help: Total number of the PBA. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.9
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsInusePBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.10
+      type: gauge
+      help: Number of the PBA in use. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.10
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsExpiringPBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.11
+      type: gauge
+      help: Number of the expiring PBA. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.11
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsFreePBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.12
+      type: gauge
+      help: The free PBA (percentage). - 1.3.6.1.4.1.12356.101.5.3.2.1.1.12
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsFlags
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.13
+      type: DisplayString
+      help: Flags of the pool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.13
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsGroupName
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.14
+      type: DisplayString
+      help: The pool group name if it is in an IP pool group. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.14
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsBlockSize
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.15
+      type: gauge
+      help: PBA block size. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.15
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPortStart
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.16
+      type: gauge
+      help: Start port. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.16
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPortEnd
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.17
+      type: gauge
+      help: End port. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.17
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsStartClientIP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.18
+      type: InetAddressIPv4
+      help: The start IP of the client address. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.18
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsEndClientIP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.19
+      type: InetAddressIPv4
+      help: The end IP of the client address. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.19
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsRscTCP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.20
+      type: gauge
+      help: Total resource (port or block) for TCP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.20
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsRscUDP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.21
+      type: gauge
+      help: Total resource (port or block) for UDP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.21
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsUsedRscTCP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.22
+      type: gauge
+      help: Used resource for TCP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.22
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsUsedRscUDP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.23
+      type: gauge
+      help: Used resource for UDP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.23
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPercentageTCP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.24
+      type: gauge
+      help: Percentage used for TCP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.24
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPercentageUDP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.25
+      type: gauge
+      help: Percentage used for UDP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.25
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwGtpStatsRequest
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.1
+      type: gauge
+      help: Number of request in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.1
+    - name: fgFwGtpStatsEchoRequest
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.2
+      type: gauge
+      help: Number of echo_request in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.2
+    - name: fgFwGtpStatsTunnel
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.3
+      type: gauge
+      help: Number of tunnel in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.3
+    - name: fgFwGtpStatsTunnelV0
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.4
+      type: gauge
+      help: Number of tunnel_v0 in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.4
+    - name: fgFwGtpStatsPath
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.5
+      type: gauge
+      help: Number of path in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.5
+    - name: fgFwGtpStatsBearer
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.6
+      type: gauge
+      help: Number of bearer in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.6
+    - name: fgFwGtpStatsFteid
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.7
+      type: gauge
+      help: Number of fteid in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.7
+    - name: fgFwGtpStatsProfile
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.8
+      type: gauge
+      help: Number of profile in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.8
+    - name: fgFwGtpStatsImsi
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.9
+      type: gauge
+      help: Number of imsi in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.9
+    - name: fgFwGtpStatsApn
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.10
+      type: gauge
+      help: Number of apn in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.10
+    - name: fgFwGtpStatsApnShaper
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.11
+      type: gauge
+      help: Number of apn_shaper in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.11
+    - name: fgFwGtpStatsTunnelLimiter
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.12
+      type: gauge
+      help: Number of tunnel_limiter in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.12
+    - name: fgFwGtpStatsAdvPolicies
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.13
+      type: gauge
+      help: Number of adv_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.13
+    - name: fgFwGtpStatsIeRemovePolicies
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.14
+      type: gauge
+      help: Number of ie_remove_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.14
+    - name: fgFwGtpStatsIpPolicy
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.15
+      type: gauge
+      help: Number of ip_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.15
+    - name: fgFwGtpStatsNoipPolicy
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.16
+      type: gauge
+      help: Number of noip_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.16
+    - name: fgFwGtpStatsIeWlEntry
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.17
+      type: gauge
+      help: Number of ie_wl_entry in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.17
+    - name: fgFwGtpStatsClash
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.18
+      type: counter
+      help: Number of clash in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.18
+    - name: fgFwGtpStatsDrop
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.19
+      type: counter
+      help: Number of drop in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.19
+    - name: fgFwGtpRtStatsCForwarded
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.1
+      type: counter
+      help: Number of control packet forwarded in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.1
+    - name: fgFwGtpRtStatsCRejected
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.2
+      type: counter
+      help: Number of control packet rejected in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.2
+    - name: fgFwGtpRtStatsCDropped0
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.3
+      type: counter
+      help: Number of control packet dropped by unknown in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.3
+    - name: fgFwGtpRtStatsCDropped1
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.4
+      type: counter
+      help: Number of control packet dropped by sanity in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.4
+    - name: fgFwGtpRtStatsCDropped2
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.5
+      type: counter
+      help: Number of control packet dropped by reserved-field in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.5
+    - name: fgFwGtpRtStatsCDropped3
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.6
+      type: counter
+      help: Number of control packet dropped by msg-reserved in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.6
+    - name: fgFwGtpRtStatsCDropped4
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.7
+      type: counter
+      help: Number of control packet dropped by msg-out-state in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.7
+    - name: fgFwGtpRtStatsCDropped5
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.8
+      type: counter
+      help: Number of control packet dropped by ie-reserved in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.8
+    - name: fgFwGtpRtStatsCDropped6
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.9
+      type: counter
+      help: Number of control packet dropped by ie-out-state in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.9
+    - name: fgFwGtpRtStatsCDropped7
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.10
+      type: counter
+      help: Number of control packet dropped by msg-length in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.10
+    - name: fgFwGtpRtStatsCDropped8
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.11
+      type: counter
+      help: Number of control packet dropped by ie-length in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.11
+    - name: fgFwGtpRtStatsCDropped9
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.12
+      type: counter
+      help: Number of control packet dropped by mandatory-ie in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.12
+    - name: fgFwGtpRtStatsCDropped10
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.13
+      type: counter
+      help: Number of control packet dropped by ip-policy in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.13
+    - name: fgFwGtpRtStatsCDropped11
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.14
+      type: counter
+      help: Number of control packet dropped by noip-policy in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.14
+    - name: fgFwGtpRtStatsCDropped12
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.15
+      type: counter
+      help: Number of control packet dropped by sgsn-auth in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.15
+    - name: fgFwGtpRtStatsCDropped13
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.16
+      type: counter
+      help: Number of control packet dropped by sgsn-handover in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.16
+    - name: fgFwGtpRtStatsCDropped14
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.17
+      type: counter
+      help: Number of control packet dropped by ggsn-auth in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.17
+    - name: fgFwGtpRtStatsCDropped15
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.18
+      type: counter
+      help: Number of control packet dropped by seq-num in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.18
+    - name: fgFwGtpRtStatsCDropped16
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.19
+      type: counter
+      help: Number of control packet dropped by msg-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.19
+    - name: fgFwGtpRtStatsCDropped17
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.20
+      type: counter
+      help: Number of control packet dropped by apn-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.20
+    - name: fgFwGtpRtStatsCDropped18
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.21
+      type: counter
+      help: Number of control packet dropped by adv-policy-filter in firewall gtp
+        runtime statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.21
+    - name: fgFwGtpRtStatsCDropped19
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.22
+      type: counter
+      help: Number of control packet dropped by imsi-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.22
+    - name: fgFwGtpRtStatsCDropped20
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.23
+      type: counter
+      help: Number of control packet dropped by rate-limited in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.23
+    - name: fgFwGtpRtStatsCDropped21
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.24
+      type: counter
+      help: Number of control packet dropped by tunnel-limited in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.24
+    - name: fgFwGtpRtStatsCDropped22
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.25
+      type: counter
+      help: Number of control packet dropped by invalid-state in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.25
+    - name: fgFwGtpRtStatsCDropped23
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.26
+      type: counter
+      help: Number of control packet dropped by unknown-gtp-version in firewall gtp
+        runtime statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.26
+    - name: fgFwGtpRtStatsDForwarded
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.1
+      type: counter
+      help: Number of data packet forwarded in firewall gtp runtime statistics. -
+        1.3.6.1.4.1.12356.101.5.4.2.2.1
+    - name: fgFwGtpRtStatsDDroppedSanity
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.2
+      type: counter
+      help: Number of data packet dropped by sanity in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.2
+    - name: fgFwGtpRtStatsDDroppedMalMsg
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.3
+      type: counter
+      help: Number of data packet dropped by mal-msg in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.3
+    - name: fgFwGtpRtStatsDDroppedNoState
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.4
+      type: counter
+      help: Number of data packet dropped by no-state in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.4
+    - name: fgFwGtpRtStatsDDroppedMalIe
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.5
+      type: counter
+      help: Number of data packet dropped by mal-ie in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.5
+    - name: fgFwGtpRtStatsDDroppedGtpInGtp
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.6
+      type: counter
+      help: Number of data packet dropped by gtp-in-gtp in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.6
+    - name: fgFwGtpRtStatsDDroppedSpoof
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.7
+      type: counter
+      help: Number of data packet dropped by spoof in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.7
+    - name: fgFwGtpRtStatsDDroppedIpPol
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.8
+      type: counter
+      help: Number of data packet dropped by ip-policy in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.8
+    - name: fgFwGtpRtStatsDDroppedMsgFilter
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.9
+      type: counter
+      help: Number of data packet dropped by msg-filter in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.9
+    - name: fgFwGtpRtStatsDDroppedMsgRateLimit
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.10
+      type: counter
+      help: Number of data packet dropped by msg-rate-limit in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.2.10
+    - name: fgFwGtpRtStatsDDroppedUnknownVersion
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.11
+      type: counter
+      help: Number of data packet dropped by unknown-gtp-version in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.2.11
+    - name: fgFwGtpRtStatsBForwarded
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.1
+      type: counter
+      help: Number of billing packet forwarded in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.1
+    - name: fgFwGtpRtStatsBDroppedSanity
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.2
+      type: counter
+      help: Number of billing packet dropped by sanity in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.2
+    - name: fgFwGtpRtStatsBDroppedMalMsg
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.3
+      type: counter
+      help: Number of billing packet dropped by mal-msg in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.3
+    - name: fgFwGtpRtStatsBDroppedMalIe
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.4
+      type: counter
+      help: Number of billing packet dropped by mal-ie in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.4
+    - name: fgFwGtpRtStatsBDroppedMsgFilter
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.5
+      type: counter
+      help: Number of billing packet dropped by msg-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.3.5
+    - name: fgFwAddrDynEmsID
+      oid: 1.3.6.1.4.1.12356.101.5.5.2.1.1.1
+      type: gauge
+      help: ID of firewall dynamic address. - 1.3.6.1.4.1.12356.101.5.5.2.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwAddrDynEmsID
+        type: gauge
+    - name: fgFwAddrDynEmsName
+      oid: 1.3.6.1.4.1.12356.101.5.5.2.1.1.2
+      type: DisplayString
+      help: Name of firewall dynamic address. - 1.3.6.1.4.1.12356.101.5.5.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwAddrDynEmsID
+        type: gauge
+    - name: fgFwAddrDynEmsAddresses
+      oid: 1.3.6.1.4.1.12356.101.5.5.2.1.1.3
+      type: gauge
+      help: Addresses of firewall dynamic address. - 1.3.6.1.4.1.12356.101.5.5.2.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwAddrDynEmsID
+        type: gauge
   fg_full:
     walk:
     - 1.3.6.1.4.1.12356.101.10
@@ -1374,6 +2179,7 @@ modules:
     - 1.3.6.1.4.1.12356.101.17
     - 1.3.6.1.4.1.12356.101.3
     - 1.3.6.1.4.1.12356.101.4
+    - 1.3.6.1.4.1.12356.101.5
     - 1.3.6.1.4.1.12356.101.6
     - 1.3.6.1.4.1.12356.101.7
     - 1.3.6.1.4.1.12356.101.8
@@ -6327,6 +7133,807 @@ modules:
       help: Dpdk eng index to Cpu Mapping - 1.3.6.1.4.1.12356.101.4.12.2.1.7
       indexes:
       - labelname: fgDpdkEngEntIndex
+        type: gauge
+    - name: fgFwPolID
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.1
+      type: gauge
+      help: Firewall policy ID - 1.3.6.1.4.1.12356.101.5.1.2.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolPktCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.2
+      type: counter
+      help: Number of packets matched to policy (passed or blocked, depending on policy
+        action) - 1.3.6.1.4.1.12356.101.5.1.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolByteCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.3
+      type: counter
+      help: Number of bytes in packets matching the policy - 1.3.6.1.4.1.12356.101.5.1.2.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolLastUsed
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.4
+      type: DisplayString
+      help: How many minutes since last used. - 1.3.6.1.4.1.12356.101.5.1.2.1.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolPktCountHc
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.5
+      type: counter
+      help: 64-bit Number of packets matched to policy (passed or blocked, depending
+        on policy action) - 1.3.6.1.4.1.12356.101.5.1.2.1.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwPolByteCountHc
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.1.1.6
+      type: counter
+      help: 64-bit Number of bytes in packets matching the policy - 1.3.6.1.4.1.12356.101.5.1.2.1.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwPolID
+        type: gauge
+    - name: fgFwHsPolID
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.1
+      type: gauge
+      help: Firewall hyperscale-policy ID - 1.3.6.1.4.1.12356.101.5.1.2.3.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwHsPolPktCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.2
+      type: counter
+      help: Number of packets matched to policy (passed or blocked, depending on policy
+        action) - 1.3.6.1.4.1.12356.101.5.1.2.3.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwHsPolByteCount
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.3
+      type: counter
+      help: Number of bytes in packets matching the policy - 1.3.6.1.4.1.12356.101.5.1.2.3.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwHsPolLastUsed
+      oid: 1.3.6.1.4.1.12356.101.5.1.2.3.1.4
+      type: DisplayString
+      help: How many minutes since last used. - 1.3.6.1.4.1.12356.101.5.1.2.3.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwHsPolID
+        type: gauge
+    - name: fgFwUserNumber
+      oid: 1.3.6.1.4.1.12356.101.5.2.1.1
+      type: gauge
+      help: The number of user accounts in fgFwUserTable - 1.3.6.1.4.1.12356.101.5.2.1.1
+    - name: fgFwUserAuthTimeout
+      oid: 1.3.6.1.4.1.12356.101.5.2.1.2
+      type: gauge
+      help: Idle period after which a firewall-authentication user's session is automatically
+        expired - 1.3.6.1.4.1.12356.101.5.2.1.2
+    - name: fgFwUserIndex
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.1
+      type: gauge
+      help: An index for uniquely identifying the users in fgFwUserTable - 1.3.6.1.4.1.12356.101.5.2.2.1.1.1
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+    - name: fgFwUserName
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.2
+      type: DisplayString
+      help: User-name of the specified account - 1.3.6.1.4.1.12356.101.5.2.2.1.1.2
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+    - name: fgFwUserAuth
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.3
+      type: gauge
+      help: Type of authentication the account uses (local, RADIUS, LDAP, etc.) -
+        1.3.6.1.4.1.12356.101.5.2.2.1.1.3
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+      enum_values:
+        1: local
+        2: radiusSingle
+        3: radiusMultiple
+        4: ldap
+    - name: fgFwUserState
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.4
+      type: gauge
+      help: Status of the user account (enable/disable) - 1.3.6.1.4.1.12356.101.5.2.2.1.1.4
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+      enum_values:
+        1: disabled
+        2: enabled
+    - name: fgFwUserVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.2.1.1.5
+      type: gauge
+      help: Virtual domain the user account exists in - 1.3.6.1.4.1.12356.101.5.2.2.1.1.5
+      indexes:
+      - labelname: fgFwUserIndex
+        type: gauge
+    - name: fgFwAuthUserInfoVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.1.1.1
+      type: gauge
+      help: Virtual domain index that uniquely identify rows in this table. - 1.3.6.1.4.1.12356.101.5.2.3.1.1.1
+      indexes:
+      - labelname: fgFwAuthUserInfoVdom
+        type: gauge
+    - name: fgFwAuthIpv4UserNumber
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.1.1.2
+      type: gauge
+      help: The number of authenticated IPv4 users in this virtual domain. - 1.3.6.1.4.1.12356.101.5.2.3.1.1.2
+      indexes:
+      - labelname: fgFwAuthUserInfoVdom
+        type: gauge
+    - name: fgFwAuthIpv6UserNumber
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.1.1.3
+      type: gauge
+      help: The number of authenticated IPv6 users in this virtual domain. - 1.3.6.1.4.1.12356.101.5.2.3.1.1.3
+      indexes:
+      - labelname: fgFwAuthUserInfoVdom
+        type: gauge
+    - name: fgFwAuthIpv4UserIndex
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.1
+      type: gauge
+      help: An index for uniquely identifying the users in fgFwAuthIpv4UserTable.
+        - 1.3.6.1.4.1.12356.101.5.2.3.2.1.1
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv4UserVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.2
+      type: gauge
+      help: Virtual domain the authenticated user exists in - 1.3.6.1.4.1.12356.101.5.2.3.2.1.2
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv4UserName
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.3
+      type: DisplayString
+      help: User-name of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.2.1.3
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv4UserType
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.4
+      type: gauge
+      help: Type of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.2.1.4
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+      enum_values:
+        0: fsso
+        1: rsso
+        2: ntlm
+        3: fw
+        4: wsso
+        5: fsspCitrix
+        6: ssoGuest
+        7: disclaimer
+        8: other
+        9: unauth
+        10: email
+    - name: fgFwAuthIpv4UserAddr
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.2.1.5
+      type: InetAddressIPv4
+      help: IPv4 address of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.2.1.5
+      indexes:
+      - labelname: fgFwAuthIpv4UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserIndex
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.1
+      type: gauge
+      help: An index for uniquely identifying the users in fgFwAuthIpv4UserTable.
+        - 1.3.6.1.4.1.12356.101.5.2.3.3.1.1
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserVdom
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.2
+      type: gauge
+      help: Virtual domain the authenticated user exists in - 1.3.6.1.4.1.12356.101.5.2.3.3.1.2
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserName
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.3
+      type: DisplayString
+      help: User-name of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.3.1.3
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwAuthIpv6UserType
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.4
+      type: gauge
+      help: Type of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.3.1.4
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+      enum_values:
+        0: fsso
+        1: rsso
+        2: ntlm
+        3: fw
+        4: wsso
+        5: fsspCitrix
+        6: ssoGuest
+        7: disclaimer
+        8: other
+        9: unauth
+        10: email
+    - name: fgFwAuthIpv6UserAddr
+      oid: 1.3.6.1.4.1.12356.101.5.2.3.3.1.5
+      type: OctetString
+      help: IPv6 address of the authenticated user. - 1.3.6.1.4.1.12356.101.5.2.3.3.1.5
+      indexes:
+      - labelname: fgFwAuthIpv6UserIndex
+        type: gauge
+    - name: fgFwIppStatsName
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.1
+      type: DisplayString
+      help: Name of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.1
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsType
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.2
+      type: DisplayString
+      help: Type of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.2
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsStartIp
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.3
+      type: InetAddressIPv4
+      help: Startip of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.3
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsEndIp
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.4
+      type: InetAddressIPv4
+      help: Endip of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.4
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsTotalSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.5
+      type: gauge
+      help: Total session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.5
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsTcpSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.6
+      type: gauge
+      help: Tcp session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.6
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsUdpSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.7
+      type: gauge
+      help: Udp session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.7
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsOtherSessions
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.8
+      type: gauge
+      help: Other session number of the ippool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.8
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsTotalPBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.9
+      type: gauge
+      help: Total number of the PBA. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.9
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsInusePBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.10
+      type: gauge
+      help: Number of the PBA in use. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.10
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsExpiringPBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.11
+      type: gauge
+      help: Number of the expiring PBA. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.11
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsFreePBAs
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.12
+      type: gauge
+      help: The free PBA (percentage). - 1.3.6.1.4.1.12356.101.5.3.2.1.1.12
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsFlags
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.13
+      type: DisplayString
+      help: Flags of the pool. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.13
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsGroupName
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.14
+      type: DisplayString
+      help: The pool group name if it is in an IP pool group. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.14
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsBlockSize
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.15
+      type: gauge
+      help: PBA block size. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.15
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPortStart
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.16
+      type: gauge
+      help: Start port. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.16
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPortEnd
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.17
+      type: gauge
+      help: End port. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.17
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsStartClientIP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.18
+      type: InetAddressIPv4
+      help: The start IP of the client address. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.18
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsEndClientIP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.19
+      type: InetAddressIPv4
+      help: The end IP of the client address. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.19
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsRscTCP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.20
+      type: gauge
+      help: Total resource (port or block) for TCP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.20
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsRscUDP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.21
+      type: gauge
+      help: Total resource (port or block) for UDP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.21
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsUsedRscTCP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.22
+      type: gauge
+      help: Used resource for TCP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.22
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsUsedRscUDP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.23
+      type: gauge
+      help: Used resource for UDP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.23
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPercentageTCP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.24
+      type: gauge
+      help: Percentage used for TCP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.24
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwIppStatsPercentageUDP
+      oid: 1.3.6.1.4.1.12356.101.5.3.2.1.1.25
+      type: gauge
+      help: Percentage used for UDP. - 1.3.6.1.4.1.12356.101.5.3.2.1.1.25
+      indexes:
+      - labelname: fgFwIppStatsStartIp
+        type: InetAddressIPv4
+      - labelname: fgFwIppStatsEndIp
+        type: InetAddressIPv4
+    - name: fgFwGtpStatsRequest
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.1
+      type: gauge
+      help: Number of request in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.1
+    - name: fgFwGtpStatsEchoRequest
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.2
+      type: gauge
+      help: Number of echo_request in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.2
+    - name: fgFwGtpStatsTunnel
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.3
+      type: gauge
+      help: Number of tunnel in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.3
+    - name: fgFwGtpStatsTunnelV0
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.4
+      type: gauge
+      help: Number of tunnel_v0 in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.4
+    - name: fgFwGtpStatsPath
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.5
+      type: gauge
+      help: Number of path in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.5
+    - name: fgFwGtpStatsBearer
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.6
+      type: gauge
+      help: Number of bearer in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.6
+    - name: fgFwGtpStatsFteid
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.7
+      type: gauge
+      help: Number of fteid in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.7
+    - name: fgFwGtpStatsProfile
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.8
+      type: gauge
+      help: Number of profile in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.8
+    - name: fgFwGtpStatsImsi
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.9
+      type: gauge
+      help: Number of imsi in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.9
+    - name: fgFwGtpStatsApn
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.10
+      type: gauge
+      help: Number of apn in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.10
+    - name: fgFwGtpStatsApnShaper
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.11
+      type: gauge
+      help: Number of apn_shaper in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.11
+    - name: fgFwGtpStatsTunnelLimiter
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.12
+      type: gauge
+      help: Number of tunnel_limiter in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.12
+    - name: fgFwGtpStatsAdvPolicies
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.13
+      type: gauge
+      help: Number of adv_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.13
+    - name: fgFwGtpStatsIeRemovePolicies
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.14
+      type: gauge
+      help: Number of ie_remove_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.14
+    - name: fgFwGtpStatsIpPolicy
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.15
+      type: gauge
+      help: Number of ip_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.15
+    - name: fgFwGtpStatsNoipPolicy
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.16
+      type: gauge
+      help: Number of noip_policy in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.16
+    - name: fgFwGtpStatsIeWlEntry
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.17
+      type: gauge
+      help: Number of ie_wl_entry in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.17
+    - name: fgFwGtpStatsClash
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.18
+      type: counter
+      help: Number of clash in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.18
+    - name: fgFwGtpStatsDrop
+      oid: 1.3.6.1.4.1.12356.101.5.4.1.19
+      type: counter
+      help: Number of drop in firewall gtp statistics. - 1.3.6.1.4.1.12356.101.5.4.1.19
+    - name: fgFwGtpRtStatsCForwarded
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.1
+      type: counter
+      help: Number of control packet forwarded in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.1
+    - name: fgFwGtpRtStatsCRejected
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.2
+      type: counter
+      help: Number of control packet rejected in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.2
+    - name: fgFwGtpRtStatsCDropped0
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.3
+      type: counter
+      help: Number of control packet dropped by unknown in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.3
+    - name: fgFwGtpRtStatsCDropped1
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.4
+      type: counter
+      help: Number of control packet dropped by sanity in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.4
+    - name: fgFwGtpRtStatsCDropped2
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.5
+      type: counter
+      help: Number of control packet dropped by reserved-field in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.5
+    - name: fgFwGtpRtStatsCDropped3
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.6
+      type: counter
+      help: Number of control packet dropped by msg-reserved in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.6
+    - name: fgFwGtpRtStatsCDropped4
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.7
+      type: counter
+      help: Number of control packet dropped by msg-out-state in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.7
+    - name: fgFwGtpRtStatsCDropped5
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.8
+      type: counter
+      help: Number of control packet dropped by ie-reserved in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.8
+    - name: fgFwGtpRtStatsCDropped6
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.9
+      type: counter
+      help: Number of control packet dropped by ie-out-state in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.9
+    - name: fgFwGtpRtStatsCDropped7
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.10
+      type: counter
+      help: Number of control packet dropped by msg-length in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.10
+    - name: fgFwGtpRtStatsCDropped8
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.11
+      type: counter
+      help: Number of control packet dropped by ie-length in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.11
+    - name: fgFwGtpRtStatsCDropped9
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.12
+      type: counter
+      help: Number of control packet dropped by mandatory-ie in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.12
+    - name: fgFwGtpRtStatsCDropped10
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.13
+      type: counter
+      help: Number of control packet dropped by ip-policy in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.13
+    - name: fgFwGtpRtStatsCDropped11
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.14
+      type: counter
+      help: Number of control packet dropped by noip-policy in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.14
+    - name: fgFwGtpRtStatsCDropped12
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.15
+      type: counter
+      help: Number of control packet dropped by sgsn-auth in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.15
+    - name: fgFwGtpRtStatsCDropped13
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.16
+      type: counter
+      help: Number of control packet dropped by sgsn-handover in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.16
+    - name: fgFwGtpRtStatsCDropped14
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.17
+      type: counter
+      help: Number of control packet dropped by ggsn-auth in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.17
+    - name: fgFwGtpRtStatsCDropped15
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.18
+      type: counter
+      help: Number of control packet dropped by seq-num in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.1.18
+    - name: fgFwGtpRtStatsCDropped16
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.19
+      type: counter
+      help: Number of control packet dropped by msg-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.19
+    - name: fgFwGtpRtStatsCDropped17
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.20
+      type: counter
+      help: Number of control packet dropped by apn-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.20
+    - name: fgFwGtpRtStatsCDropped18
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.21
+      type: counter
+      help: Number of control packet dropped by adv-policy-filter in firewall gtp
+        runtime statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.21
+    - name: fgFwGtpRtStatsCDropped19
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.22
+      type: counter
+      help: Number of control packet dropped by imsi-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.22
+    - name: fgFwGtpRtStatsCDropped20
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.23
+      type: counter
+      help: Number of control packet dropped by rate-limited in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.23
+    - name: fgFwGtpRtStatsCDropped21
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.24
+      type: counter
+      help: Number of control packet dropped by tunnel-limited in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.24
+    - name: fgFwGtpRtStatsCDropped22
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.25
+      type: counter
+      help: Number of control packet dropped by invalid-state in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.25
+    - name: fgFwGtpRtStatsCDropped23
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.1.26
+      type: counter
+      help: Number of control packet dropped by unknown-gtp-version in firewall gtp
+        runtime statistics. - 1.3.6.1.4.1.12356.101.5.4.2.1.26
+    - name: fgFwGtpRtStatsDForwarded
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.1
+      type: counter
+      help: Number of data packet forwarded in firewall gtp runtime statistics. -
+        1.3.6.1.4.1.12356.101.5.4.2.2.1
+    - name: fgFwGtpRtStatsDDroppedSanity
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.2
+      type: counter
+      help: Number of data packet dropped by sanity in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.2
+    - name: fgFwGtpRtStatsDDroppedMalMsg
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.3
+      type: counter
+      help: Number of data packet dropped by mal-msg in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.3
+    - name: fgFwGtpRtStatsDDroppedNoState
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.4
+      type: counter
+      help: Number of data packet dropped by no-state in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.4
+    - name: fgFwGtpRtStatsDDroppedMalIe
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.5
+      type: counter
+      help: Number of data packet dropped by mal-ie in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.5
+    - name: fgFwGtpRtStatsDDroppedGtpInGtp
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.6
+      type: counter
+      help: Number of data packet dropped by gtp-in-gtp in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.6
+    - name: fgFwGtpRtStatsDDroppedSpoof
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.7
+      type: counter
+      help: Number of data packet dropped by spoof in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.7
+    - name: fgFwGtpRtStatsDDroppedIpPol
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.8
+      type: counter
+      help: Number of data packet dropped by ip-policy in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.8
+    - name: fgFwGtpRtStatsDDroppedMsgFilter
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.9
+      type: counter
+      help: Number of data packet dropped by msg-filter in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.2.9
+    - name: fgFwGtpRtStatsDDroppedMsgRateLimit
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.10
+      type: counter
+      help: Number of data packet dropped by msg-rate-limit in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.2.10
+    - name: fgFwGtpRtStatsDDroppedUnknownVersion
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.2.11
+      type: counter
+      help: Number of data packet dropped by unknown-gtp-version in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.2.11
+    - name: fgFwGtpRtStatsBForwarded
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.1
+      type: counter
+      help: Number of billing packet forwarded in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.1
+    - name: fgFwGtpRtStatsBDroppedSanity
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.2
+      type: counter
+      help: Number of billing packet dropped by sanity in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.2
+    - name: fgFwGtpRtStatsBDroppedMalMsg
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.3
+      type: counter
+      help: Number of billing packet dropped by mal-msg in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.3
+    - name: fgFwGtpRtStatsBDroppedMalIe
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.4
+      type: counter
+      help: Number of billing packet dropped by mal-ie in firewall gtp runtime statistics.
+        - 1.3.6.1.4.1.12356.101.5.4.2.3.4
+    - name: fgFwGtpRtStatsBDroppedMsgFilter
+      oid: 1.3.6.1.4.1.12356.101.5.4.2.3.5
+      type: counter
+      help: Number of billing packet dropped by msg-filter in firewall gtp runtime
+        statistics. - 1.3.6.1.4.1.12356.101.5.4.2.3.5
+    - name: fgFwAddrDynEmsID
+      oid: 1.3.6.1.4.1.12356.101.5.5.2.1.1.1
+      type: gauge
+      help: ID of firewall dynamic address. - 1.3.6.1.4.1.12356.101.5.5.2.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwAddrDynEmsID
+        type: gauge
+    - name: fgFwAddrDynEmsName
+      oid: 1.3.6.1.4.1.12356.101.5.5.2.1.1.2
+      type: DisplayString
+      help: Name of firewall dynamic address. - 1.3.6.1.4.1.12356.101.5.5.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwAddrDynEmsID
+        type: gauge
+    - name: fgFwAddrDynEmsAddresses
+      oid: 1.3.6.1.4.1.12356.101.5.5.2.1.1.3
+      type: gauge
+      help: Addresses of firewall dynamic address. - 1.3.6.1.4.1.12356.101.5.5.2.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgFwAddrDynEmsID
         type: gauge
     - name: fgAdminIdleTimeout
       oid: 1.3.6.1.4.1.12356.101.6.1.1.1
