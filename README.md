@@ -13,4 +13,6 @@ This config generator uses NetSNMP to parse FortiGate MIBs, and generates config
 
 ```sh
 make
+# or
+make FORTIGATE_VERSION=v7.x
 ```
