@@ -1,4 +1,4 @@
-ARG FORTIGATE_VERSION=v7.2
+ARG FORTIGATE_VERSION
 
 FROM --platform=$BUILDPLATFORM ghcr.io/socheatsok78/snmp-exporter-generator:0.30.1
 
