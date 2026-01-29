@@ -12,7 +12,5 @@ This config generator uses NetSNMP to parse FortiGate MIBs, and generates config
 3. The generated `snmp.yml` will be located in the corresponding versioned directory (e.g., `fortigate/v7.2/snmp.yml`).
 
 ```sh
-make
-# or
 make FORTIGATE_VERSION=v7.x
 ```
