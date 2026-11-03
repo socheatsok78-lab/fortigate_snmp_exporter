@@ -7,7 +7,7 @@ COPY fortigate/${FORTIGATE_VERSION}/FORTINET-CORE-MIB.mib /opt/mibs/FORTINET-COR
 COPY fortigate/${FORTIGATE_VERSION}/FORTINET-FORTIGATE-MIB.mib /opt/mibs/FORTINET-FORTIGATE-MIB.mib
 
 WORKDIR /fortigate
-COPY generator.yml /fortigate/generator.yml
+COPY fortigate/${FORTIGATE_VERSION}/generator.yml /fortigate/generator.yml
 RUN generator generate
 
 FROM scratch

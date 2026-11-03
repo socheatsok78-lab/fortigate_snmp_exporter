@@ -1,0 +1,102 @@
+---
+auths:
+  public_v1:
+    version: 1
+  public_v2:
+    version: 2
+
+modules:
+  # SNMPv2-MIB for things like sysDescr, sysUpTime, etc.
+  system:
+    walk:
+      - "SNMPv2-MIB::system"
+    lookups:
+      - source_indexes: [sysORIndex]
+        lookup: "SNMPv2-MIB::sysORDescr"
+  # Default IF-MIB interfaces table with ifIndex.
+  if_mib:
+    walk:
+      - "IF-MIB::interfaces"
+      - "IF-MIB::ifXTable"
+    lookups:
+      - source_indexes: [ifIndex]
+        lookup: "IF-MIB::ifAlias"
+      - source_indexes: [ifIndex]
+        # Disambiguate from PaloAlto PAN-COMMON-MIB::ifDescr.
+        lookup: "IF-MIB::ifDescr"
+      - source_indexes: [ifIndex]
+        # Disambiguate from Netscaler NS-ROOT-MIB::ifName.
+        lookup: "IF-MIB::ifName"
+    overrides:
+      ifAlias:
+        ignore: true # Lookup metric
+      ifDescr:
+        ignore: true # Lookup metric
+      ifName:
+        ignore: true # Lookup metric
+      ifType:
+        type: EnumAsInfo
+  # Default IP-MIB with ipv4InterfaceTable for example.
+  ip_mib:
+    walk: [ipv4InterfaceTable]
+
+  # FORTINET-FORTIGATE-MIB
+  fg_full:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgVirtualDomain"
+      - "FORTINET-FORTIGATE-MIB::fgSystem"
+      - "FORTINET-FORTIGATE-MIB::fgFirewall"
+      - "FORTINET-FORTIGATE-MIB::fgMgmt" # Admins
+      - "FORTINET-FORTIGATE-MIB::fgIntf"
+      - "FORTINET-FORTIGATE-MIB::fgAntivirus"
+      - "FORTINET-FORTIGATE-MIB::fgIps"
+      - "FORTINET-FORTIGATE-MIB::fgApplications"
+      - "FORTINET-FORTIGATE-MIB::fgInetProto"
+      - "FORTINET-FORTIGATE-MIB::fgVpn"
+      - "FORTINET-FORTIGATE-MIB::fgHighAvailability"
+      - "FORTINET-FORTIGATE-MIB::fgWc"
+      - "FORTINET-FORTIGATE-MIB::fgUsbModemInfo"
+      # The following are not implemented yet
+      # - "FORTINET-FORTIGATE-MIB::fgFc"
+      # - "FORTINET-FORTIGATE-MIB::fgServerLoadBalance"
+      # - "FORTINET-FORTIGATE-MIB::fgDevice"
+      # - "FORTINET-FORTIGATE-MIB::fgMibConformance"
+  fg_virtualdomain:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgVirtualDomain"
+  fg_system:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgSystem"
+  fg_firewall:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgFirewall"
+  fg_mgmt:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgMgmt"
+  fg_intf:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgIntf"
+  fg_antivirus:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgAntivirus"
+  fg_ips:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgIps"
+  fg_applications:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgApplications"
+  fg_inetproto:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgInetProto"
+  fg_vpn:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgVpn"
+  fg_highavailability:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgHighAvailability"
+  fg_wc:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgWc"
+  fg_usbmodeminfo:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgUsbModemInfo"
