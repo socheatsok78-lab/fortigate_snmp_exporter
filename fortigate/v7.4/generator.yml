@@ -56,6 +56,15 @@ modules:
       - "FORTINET-FORTIGATE-MIB::fgHighAvailability"
       - "FORTINET-FORTIGATE-MIB::fgWc"
       - "FORTINET-FORTIGATE-MIB::fgUsbModemInfo"
+      - "FORTINET-FORTIGATE-MIB::fgInternalLTEModemsInfo"
+      - "FORTINET-FORTIGATE-MIB::fgNPU"
+      - "FORTINET-FORTIGATE-MIB::fgConfig"
+      - "FORTINET-FORTIGATE-MIB::fgDhcp"
+      - "FORTINET-FORTIGATE-MIB::fgSw"
+      - "FORTINET-FORTIGATE-MIB::fgChassis"
+      - "FORTINET-FORTIGATE-MIB::fgServiceGroupWorkerBlades"
+      - "FORTINET-FORTIGATE-MIB::fgEms"
+      - "FORTINET-FORTIGATE-MIB::fgInternal5GModemsInfo"
       # The following are not implemented yet
       # - "FORTINET-FORTIGATE-MIB::fgFc"
       # - "FORTINET-FORTIGATE-MIB::fgServerLoadBalance"
@@ -100,3 +109,30 @@ modules:
   fg_usbmodeminfo:
     walk:
       - "FORTINET-FORTIGATE-MIB::fgUsbModemInfo"
+  fg_internalltemodemsinfo:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgInternalLTEModemsInfo"
+  fg_npu:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgNPU"
+  fg_config:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgConfig"
+  fg_dhcp:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgDhcp"
+  fg_sw:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgSw"
+  fg_chassis:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgChassis"
+  fg_servicegroupworkerblades:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgServiceGroupWorkerBlades"
+  fg_ems:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgEms"
+  fg_internal5gmodemsinfo:
+    walk:
+      - "FORTINET-FORTIGATE-MIB::fgInternal5GModemsInfo"

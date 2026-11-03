@@ -1364,6 +1364,176 @@ modules:
       oid: 1.3.6.1.4.1.12356.101.10.116.1.3
       type: counter
       help: Number of total LDAP connection failures - 1.3.6.1.4.1.12356.101.10.116.1.3
+  fg_chassis:
+    walk:
+    - 1.3.6.1.4.1.12356.101.25
+    metrics:
+    - name: fgChassisVersion
+      oid: 1.3.6.1.4.1.12356.101.25.1.1
+      type: DisplayString
+      help: Current version of the Fortigate Chassis. - 1.3.6.1.4.1.12356.101.25.1.1
+  fg_config:
+    walk:
+    - 1.3.6.1.4.1.12356.101.22
+    metrics:
+    - name: fgConfigSerial
+      oid: 1.3.6.1.4.1.12356.101.22.1.1
+      type: counter
+      help: The serial number of the current configuration, it is increased each time
+        the configuration changes. - 1.3.6.1.4.1.12356.101.22.1.1
+    - name: fgConfigChecksum
+      oid: 1.3.6.1.4.1.12356.101.22.1.2
+      type: OctetString
+      help: The checksum of the current configuration. - 1.3.6.1.4.1.12356.101.22.1.2
+    - name: fgConfigLastChangeTime
+      oid: 1.3.6.1.4.1.12356.101.22.1.3
+      type: gauge
+      help: The value of sysUpTime when the configuration was last changed. - 1.3.6.1.4.1.12356.101.22.1.3
+  fg_dhcp:
+    walk:
+    - 1.3.6.1.4.1.12356.101.23
+    metrics:
+    - name: fgDhcpServerNumber
+      oid: 1.3.6.1.4.1.12356.101.23.1.1
+      type: gauge
+      help: Number of configured DHCP servers on the FORTIGATE. - 1.3.6.1.4.1.12356.101.23.1.1
+    - name: fgDhcpLeaseUsage
+      oid: 1.3.6.1.4.1.12356.101.23.2.1.1.2
+      type: gauge
+      help: Lease Usage of the DHCP server. - 1.3.6.1.4.1.12356.101.23.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+  fg_ems:
+    walk:
+    - 1.3.6.1.4.1.12356.101.27
+    metrics:
+    - name: fgEmsGlobalEntIndex
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.1
+      type: gauge
+      help: An index value that uniquely identifies a global EMS connection. - 1.3.6.1.4.1.12356.101.27.2.1.1.1
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.2
+      type: gauge
+      help: Whether the global EMS connection is enabled. - 1.3.6.1.4.1.12356.101.27.2.1.1.2
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+      enum_values:
+        1: disabled
+        2: enabled
+    - name: fgEmsGlobalEntConnectionName
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.3
+      type: DisplayString
+      help: Global EMS connection name. - 1.3.6.1.4.1.12356.101.27.2.1.1.3
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntConnectionStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.4
+      type: gauge
+      help: State of global EMS connection. - 1.3.6.1.4.1.12356.101.27.2.1.1.4
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+      enum_values:
+        0: disconnected
+        1: connecting
+        2: connected
+    - name: fgEmsGlobalEntLastCloseReason
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.5
+      type: gauge
+      help: Reason code for the last global EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.1.1.5
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntLastCloseReasonDesc
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.6
+      type: DisplayString
+      help: Reason for the last global EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.1.1.6
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntLastCloseTime
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.7
+      type: gauge
+      help: Time since last global EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.1.1.7
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsVdEntIndex
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.1
+      type: gauge
+      help: An index value that uniquely identifies an EMS connection. - 1.3.6.1.4.1.12356.101.27.2.2.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.2
+      type: gauge
+      help: Whether the EMS connection is enabled. - 1.3.6.1.4.1.12356.101.27.2.2.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+      enum_values:
+        1: disabled
+        2: enabled
+    - name: fgEmsVdEntConnectionName
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.3
+      type: DisplayString
+      help: EMS connection name. - 1.3.6.1.4.1.12356.101.27.2.2.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntConnectionStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.4
+      type: gauge
+      help: State of EMS connection. - 1.3.6.1.4.1.12356.101.27.2.2.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+      enum_values:
+        0: disconnected
+        1: connecting
+        2: connected
+    - name: fgEmsVdEntLastCloseReason
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.5
+      type: gauge
+      help: Reason code for the last EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.2.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntLastCloseReasonDesc
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.6
+      type: DisplayString
+      help: Reason for the last EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.2.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntLastCloseTime
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.7
+      type: gauge
+      help: Time since last EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.2.1.7
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
   fg_firewall:
     walk:
     - 1.3.6.1.4.1.12356.101.5
@@ -2177,6 +2347,15 @@ modules:
     - 1.3.6.1.4.1.12356.101.13
     - 1.3.6.1.4.1.12356.101.14
     - 1.3.6.1.4.1.12356.101.17
+    - 1.3.6.1.4.1.12356.101.19
+    - 1.3.6.1.4.1.12356.101.20
+    - 1.3.6.1.4.1.12356.101.22
+    - 1.3.6.1.4.1.12356.101.23
+    - 1.3.6.1.4.1.12356.101.24
+    - 1.3.6.1.4.1.12356.101.25
+    - 1.3.6.1.4.1.12356.101.26
+    - 1.3.6.1.4.1.12356.101.27
+    - 1.3.6.1.4.1.12356.101.28
     - 1.3.6.1.4.1.12356.101.3
     - 1.3.6.1.4.1.12356.101.4
     - 1.3.6.1.4.1.12356.101.5
@@ -5897,6 +6076,2050 @@ modules:
       oid: 1.3.6.1.4.1.12356.101.17.1.8
       type: DisplayString
       help: 3G/4G USB Modem sim card identifier. - 1.3.6.1.4.1.12356.101.17.1.8
+    - name: fgMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.1.1.1
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmDetected
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.2
+      type: gauge
+      help: Internal Modem Detected. - 1.3.6.1.4.1.12356.101.19.1.1.2
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fgMdmVendor
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.3
+      type: DisplayString
+      help: Vendor Name. - 1.3.6.1.4.1.12356.101.19.1.1.3
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmModel
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.4
+      type: DisplayString
+      help: Model Name. - 1.3.6.1.4.1.12356.101.19.1.1.4
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmRevision
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.5
+      type: DisplayString
+      help: Modem Firmware Revision. - 1.3.6.1.4.1.12356.101.19.1.1.5
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmMsisdn
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.6
+      type: DisplayString
+      help: MSISDN. - 1.3.6.1.4.1.12356.101.19.1.1.6
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmEsn
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.7
+      type: DisplayString
+      help: ESN. - 1.3.6.1.4.1.12356.101.19.1.1.7
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmImei
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.8
+      type: DisplayString
+      help: IMEI. - 1.3.6.1.4.1.12356.101.19.1.1.8
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmHwRevision
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.9
+      type: DisplayString
+      help: Hardware Revision. - 1.3.6.1.4.1.12356.101.19.1.1.9
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmMeid
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.10
+      type: DisplayString
+      help: MEID. - 1.3.6.1.4.1.12356.101.19.1.1.10
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmSwRev
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.11
+      type: DisplayString
+      help: Software Revision. - 1.3.6.1.4.1.12356.101.19.1.1.11
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmSku
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.12
+      type: DisplayString
+      help: SKU. - 1.3.6.1.4.1.12356.101.19.1.1.12
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmFsn
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.13
+      type: DisplayString
+      help: FSN. - 1.3.6.1.4.1.12356.101.19.1.1.13
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmPrlVer
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.14
+      type: DisplayString
+      help: Prl Version. - 1.3.6.1.4.1.12356.101.19.1.1.14
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmFwVer
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.15
+      type: DisplayString
+      help: Modem Firmware Version. - 1.3.6.1.4.1.12356.101.19.1.1.15
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmPriFwVer
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.16
+      type: DisplayString
+      help: PRI Firmware Version. - 1.3.6.1.4.1.12356.101.19.1.1.16
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmCarrierAbbr
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.17
+      type: DisplayString
+      help: Modem Carrier Abbriviation. - 1.3.6.1.4.1.12356.101.19.1.1.17
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmActState
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.18
+      type: gauge
+      help: Modem Activation State - 1.3.6.1.4.1.12356.101.19.1.1.18
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+      enum_values:
+        0: notActivated
+        1: activated
+        2: connecting
+        3: connected
+        4: otaspAuthenticated
+        5: otaspNamDownloaded
+        6: otaspMdnDownloaded
+        7: otaspImsiDownloaded
+        8: otaspPrlDownloaded
+        9: otaspSpcDownloaded
+        10: otaspSettingsCmted
+    - name: fgMdmOpMode
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.19
+      type: gauge
+      help: Modem Operation Mode - 1.3.6.1.4.1.12356.101.19.1.1.19
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+      enum_values:
+        0: online
+        1: lowPower
+        2: factoryTest
+        3: offLine
+        4: reset
+        5: shuttingDown
+        6: persistentLowPower
+        7: modeOnlyLowPower
+        255: unknown
+    - name: fgMdmLacTac
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.20
+      type: DisplayString
+      help: Modem LAC/TAC Code. - 1.3.6.1.4.1.12356.101.19.1.1.20
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmActBand
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.21
+      type: DisplayString
+      help: Modem Active Band In Use. - 1.3.6.1.4.1.12356.101.19.1.1.21
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmCellId
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.22
+      type: DisplayString
+      help: Modem Network Cell ID. - 1.3.6.1.4.1.12356.101.19.1.1.22
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmRssi
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.23
+      type: gauge
+      help: Modem Current Rssi. - 1.3.6.1.4.1.12356.101.19.1.1.23
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgSimEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.1
+      type: gauge
+      help: Index used to identify the instance of a SIM card. - 1.3.6.1.4.1.12356.101.19.2.1.1
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.2
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.2.1.2
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimState
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.3
+      type: gauge
+      help: SIM card state - 1.3.6.1.4.1.12356.101.19.2.1.3
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+      enum_values:
+        0: initialized
+        1: lockedOrFailed
+        2: notPresent
+        3: reserved
+        255: unknown
+    - name: fgSimIccid
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.4
+      type: DisplayString
+      help: ICCID. - 1.3.6.1.4.1.12356.101.19.2.1.4
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimImsi
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.5
+      type: DisplayString
+      help: IMSI. - 1.3.6.1.4.1.12356.101.19.2.1.5
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimCountry
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.6
+      type: DisplayString
+      help: Carrier Country. - 1.3.6.1.4.1.12356.101.19.2.1.6
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimNetwork
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.7
+      type: DisplayString
+      help: Carrier Network. - 1.3.6.1.4.1.12356.101.19.2.1.7
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSigMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.3.1.1
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgCdmaRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.2
+      type: gauge
+      help: RSSI for CDMA. - 1.3.6.1.4.1.12356.101.19.3.1.2
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgCdmaEcio
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.3
+      type: gauge
+      help: ECIO for CDMA. - 1.3.6.1.4.1.12356.101.19.3.1.3
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.4
+      type: gauge
+      help: RSSI for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.4
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrEcio
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.5
+      type: gauge
+      help: ECIO for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.5
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrSinr
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.6
+      type: gauge
+      help: SINR for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.6
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrIo
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.7
+      type: gauge
+      help: IO for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.7
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgGsm
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.8
+      type: gauge
+      help: GSM Signal Strength. - 1.3.6.1.4.1.12356.101.19.3.1.8
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgWcdmaRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.9
+      type: gauge
+      help: RSSI for WCDMA. - 1.3.6.1.4.1.12356.101.19.3.1.9
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgWcdmaEcio
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.10
+      type: gauge
+      help: ECIO for WCDMA. - 1.3.6.1.4.1.12356.101.19.3.1.10
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.11
+      type: gauge
+      help: RSSI for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.11
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteRsrq
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.12
+      type: gauge
+      help: RSRQ for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.12
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteRsrp
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.13
+      type: gauge
+      help: RSRP for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.13
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteSnr
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.14
+      type: gauge
+      help: SNR for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.14
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgTdma
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.15
+      type: gauge
+      help: TDMA Signal Strength. - 1.3.6.1.4.1.12356.101.19.3.1.15
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgTrafMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.4.1.1
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.2
+      type: counter
+      help: Tx Packets OK. - 1.3.6.1.4.1.12356.101.19.4.1.2
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.3
+      type: counter
+      help: Rx Packets OK. - 1.3.6.1.4.1.12356.101.19.4.1.3
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.4
+      type: counter
+      help: Tx Packets Error. - 1.3.6.1.4.1.12356.101.19.4.1.4
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.5
+      type: counter
+      help: Rx Packets Error. - 1.3.6.1.4.1.12356.101.19.4.1.5
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.6
+      type: counter
+      help: Tx Packets Overflow. - 1.3.6.1.4.1.12356.101.19.4.1.6
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.7
+      type: counter
+      help: Rx Packets Olverflow. - 1.3.6.1.4.1.12356.101.19.4.1.7
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.8
+      type: counter
+      help: Tx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.8
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.9
+      type: counter
+      help: Rx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.9
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgLastCallTxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.10
+      type: counter
+      help: Last Call Tx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.10
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgLastCallRxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.11
+      type: counter
+      help: Last Call Rx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.11
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.12
+      type: counter
+      help: Tx Packets Dropped. - 1.3.6.1.4.1.12356.101.19.4.1.12
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.13
+      type: counter
+      help: Rx Packets Dropped. - 1.3.6.1.4.1.12356.101.19.4.1.13
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgLteSessEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.1
+      type: gauge
+      help: Index used to identify the instance of a data session on an internal LTE
+        modem. - 1.3.6.1.4.1.12356.101.19.5.1.1
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fgSessMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.2
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.2
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIfName
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.3
+      type: DisplayString
+      help: Interface Name of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.3
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteSessConnStat
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.4
+      type: gauge
+      help: Connection Status of a data session on an Internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.4
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: disconnected
+        2: connected
+        3: suspended
+        4: authenticating
+    - name: fdLteProfId
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.5
+      type: gauge
+      help: Wireless profile index of a data session on an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.5
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteProfName
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.6
+      type: DisplayString
+      help: Wireless profile name of a data session on an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.6
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteProfType
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.7
+      type: gauge
+      help: Wireless profile type of a data session on an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.7
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: lpt3gpp
+        1: lpt3gpp2
+    - name: fdLtePdpType
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.8
+      type: gauge
+      help: Wireless profile PDP context type of a data session on an internal LTE
+        modem - 1.3.6.1.4.1.12356.101.19.5.1.8
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: ipv4
+        1: ppp
+        2: ipv6
+        3: ipv4v6
+    - name: fdLteProfApn
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.9
+      type: DisplayString
+      help: Wireless profile APN name of a data session on an internal LTE modem.
+        - 1.3.6.1.4.1.12356.101.19.5.1.9
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteProfIpFamily
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.10
+      type: gauge
+      help: Wireless profile IP Family of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.10
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        4: ipv4
+        6: ipv6
+        8: unspecified
+    - name: fdLteIpv4Addr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.11
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Address of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.11
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4GwAddr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.12
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Gateway Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.12
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4NetMask
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.13
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Net Mask of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.13
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4PriDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.14
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Primary DNS Server Address of a data session on
+        an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.14
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4SecDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.15
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Secondary DNS Server Address of a data session on
+        an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.15
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6Addr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.16
+      type: OctetString
+      help: Wireless profile IPv6 Address of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.16
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6PrefLen
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.17
+      type: gauge
+      help: Wireless profile IPv6 Address Prefix of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.17
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6GwAddr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.18
+      type: OctetString
+      help: Wireless profile IPv6 Gateway Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.18
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6GwPrefLen
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.19
+      type: gauge
+      help: Wireless profile IPv6 Gateway Address Prefix of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.19
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6PriDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.20
+      type: OctetString
+      help: Wireless profile Primary DNS IPv6 Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.20
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6SecDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.21
+      type: OctetString
+      help: Wireless profile Secondary DNS IPv6 Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.21
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteMtu
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.22
+      type: gauge
+      help: Wireless profile MTU of a data session on an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.22
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteAutoConn
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.23
+      type: gauge
+      help: Wireless profile auto connection status of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.23
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: disabled
+        1: enabled
+        2: paused
+    - name: fdLteNetType
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.24
+      type: gauge
+      help: Wireless profile network type of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.24
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        -1: unknown
+        1: cdma1x
+        2: evdo
+        3: gsm
+        4: umts
+        5: evdoReva
+        6: edge
+        7: hsdpa
+        8: hsupa
+        9: hsdpaHsupa
+        10: lte
+        11: ehrpd
+        12: hsdpaPlus
+        13: hsdpaPlusHsupa
+        14: dchsdpaPlus
+        15: dchspdaPlusHsupa
+    - name: fdLteNetTypeLas
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.25
+      type: gauge
+      help: Wireless profile network type of the last data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.25
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        -1: unknown
+        1: cdma1x
+        2: evdo
+        3: gsm
+        4: umts
+        5: evdoReva
+        6: edge
+        7: hsdpa
+        8: hsupa
+        9: hsdpaHsupa
+        10: lte
+        11: ehrpd
+        12: hsdpaPlus
+        13: hsdpaPlusHsupa
+        14: dchsdpaPlus
+        15: dchspdaPlusHsupa
+    - name: fdLteLinkProto
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.26
+      type: gauge
+      help: Wireless profile data link protocol of a data session on an internal LTE
+        modem - 1.3.6.1.4.1.12356.101.19.5.1.26
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: ieee8023
+        2: rawIp
+    - name: fgGpsMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem, here it
+        is always 1. - 1.3.6.1.4.1.12356.101.19.6.1.1
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgGpsEnabled
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.2
+      type: gauge
+      help: Is GPS daemon enabled. - 1.3.6.1.4.1.12356.101.19.6.1.2
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fgLatitude
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.3
+      type: DisplayString
+      help: Latitude. - 1.3.6.1.4.1.12356.101.19.6.1.3
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgLongitude
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.4
+      type: DisplayString
+      help: Longitude. - 1.3.6.1.4.1.12356.101.19.6.1.4
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgUtcTime
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.5
+      type: DisplayString
+      help: UTC Time. - 1.3.6.1.4.1.12356.101.19.6.1.5
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgLocalTime
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.6
+      type: DisplayString
+      help: Local Time. - 1.3.6.1.4.1.12356.101.19.6.1.6
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgDatausageMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.7.1.1
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
+    - name: fgDatausageEnabled
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.2
+      type: gauge
+      help: Data usage tracking enabled. - 1.3.6.1.4.1.12356.101.19.7.1.2
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fgDataOut
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.3
+      type: counter
+      help: Bytes Out. - 1.3.6.1.4.1.12356.101.19.7.1.3
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
+    - name: fgDataIn
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.4
+      type: counter
+      help: Bytes In. - 1.3.6.1.4.1.12356.101.19.7.1.4
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
+    - name: fgNPUNumber
+      oid: 1.3.6.1.4.1.12356.101.20.1.1
+      type: gauge
+      help: The number of NPUs in NPUTable - 1.3.6.1.4.1.12356.101.20.1.1
+    - name: fgNPUName
+      oid: 1.3.6.1.4.1.12356.101.20.1.2
+      type: DisplayString
+      help: Name of the NPU - 1.3.6.1.4.1.12356.101.20.1.2
+    - name: fgNPUDrvDriftSum
+      oid: 1.3.6.1.4.1.12356.101.20.1.3
+      type: gauge
+      help: Summation of driver session drift counters(fgNPUDrvDrift) - 1.3.6.1.4.1.12356.101.20.1.3
+    - name: fgNPUEntIndex
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.1
+      type: gauge
+      help: NPU index used to uniquely identify NPU in the system. - 1.3.6.1.4.1.12356.101.20.2.1.1.1
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+    - name: fgNPUSessionTblSize
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.2
+      type: gauge
+      help: Size of session table in the NPU - 1.3.6.1.4.1.12356.101.20.2.1.1.2
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+    - name: fgNPUSessionCount
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.3
+      type: gauge
+      help: Number of active sessions in the NPU - 1.3.6.1.4.1.12356.101.20.2.1.1.3
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+    - name: fgNPUDrvDrift
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.4
+      type: gauge
+      help: Difference of session count between driver and hardware - 1.3.6.1.4.1.12356.101.20.2.1.1.4
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+    - name: fgConfigSerial
+      oid: 1.3.6.1.4.1.12356.101.22.1.1
+      type: counter
+      help: The serial number of the current configuration, it is increased each time
+        the configuration changes. - 1.3.6.1.4.1.12356.101.22.1.1
+    - name: fgConfigChecksum
+      oid: 1.3.6.1.4.1.12356.101.22.1.2
+      type: OctetString
+      help: The checksum of the current configuration. - 1.3.6.1.4.1.12356.101.22.1.2
+    - name: fgConfigLastChangeTime
+      oid: 1.3.6.1.4.1.12356.101.22.1.3
+      type: gauge
+      help: The value of sysUpTime when the configuration was last changed. - 1.3.6.1.4.1.12356.101.22.1.3
+    - name: fgDhcpServerNumber
+      oid: 1.3.6.1.4.1.12356.101.23.1.1
+      type: gauge
+      help: Number of configured DHCP servers on the FORTIGATE. - 1.3.6.1.4.1.12356.101.23.1.1
+    - name: fgDhcpLeaseUsage
+      oid: 1.3.6.1.4.1.12356.101.23.2.1.1.2
+      type: gauge
+      help: Lease Usage of the DHCP server. - 1.3.6.1.4.1.12356.101.23.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+    - name: fgSwDevicePlatform
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.1
+      type: gauge
+      help: Switch device platform type. - 1.3.6.1.4.1.12356.101.24.1.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceId
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.2
+      type: gauge
+      help: Switch device ID. - 1.3.6.1.4.1.12356.101.24.1.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceSerialNum
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.3
+      type: DisplayString
+      help: Switch device serial number. - 1.3.6.1.4.1.12356.101.24.1.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceName
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.4
+      type: DisplayString
+      help: Switch device name. - 1.3.6.1.4.1.12356.101.24.1.1.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceVersion
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.5
+      type: DisplayString
+      help: Switch device software version. - 1.3.6.1.4.1.12356.101.24.1.1.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceAuthorized
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.6
+      type: gauge
+      help: Switch device connection admin state. - 1.3.6.1.4.1.12356.101.24.1.1.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+      enum_values:
+        0: discovered
+        1: disabled
+        2: authorized
+    - name: fgSwDeviceStatus
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.7
+      type: gauge
+      help: Switch device connection status. - 1.3.6.1.4.1.12356.101.24.1.1.1.7
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+      enum_values:
+        0: down
+        1: up
+    - name: fgSwDeviceJoinTime
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.8
+      type: gauge
+      help: Time switch device become online. - 1.3.6.1.4.1.12356.101.24.1.1.1.8
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceIp
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.9
+      type: InetAddressIPv4
+      help: Switch device IP address. - 1.3.6.1.4.1.12356.101.24.1.1.1.9
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceFlag
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.10
+      type: DisplayString
+      help: Switch device transaction flag (C=config sync, U=upgrading, S=staged,
+        D=delay reboot pending, E=config sync error). - 1.3.6.1.4.1.12356.101.24.1.1.1.10
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwCpu
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.11
+      type: gauge
+      help: Switch CPU usage percentage. - 1.3.6.1.4.1.12356.101.24.1.1.1.11
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwMemory
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.12
+      type: gauge
+      help: Switch memory usage percentage. - 1.3.6.1.4.1.12356.101.24.1.1.1.12
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceIpv6
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.13
+      type: OctetString
+      help: Switch device IPv6 address. - 1.3.6.1.4.1.12356.101.24.1.1.1.13
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwPortSwitchPlatform
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.1
+      type: gauge
+      help: Switch port platform type. - 1.3.6.1.4.1.12356.101.24.2.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortSwitchId
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.2
+      type: gauge
+      help: Switch port ID. - 1.3.6.1.4.1.12356.101.24.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortNum
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.3
+      type: gauge
+      help: Switch port logical number. - 1.3.6.1.4.1.12356.101.24.2.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortSwitchSerialNum
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.4
+      type: DisplayString
+      help: Switch port serial number. - 1.3.6.1.4.1.12356.101.24.2.1.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortName
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.5
+      type: DisplayString
+      help: Switch port name. - 1.3.6.1.4.1.12356.101.24.2.1.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortStatus
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.6
+      type: gauge
+      help: Switch port status. - 1.3.6.1.4.1.12356.101.24.2.1.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+      enum_values:
+        0: down
+        1: up
+    - name: fgSwPortSpeedDuplex
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.7
+      type: DisplayString
+      help: Switch port speed. - 1.3.6.1.4.1.12356.101.24.2.1.1.7
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortNativeVlan
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.8
+      type: gauge
+      help: Switch port native vlan. - 1.3.6.1.4.1.12356.101.24.2.1.1.8
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortAllowedVlan
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.9
+      type: DisplayString
+      help: Switch port allowed vlan. - 1.3.6.1.4.1.12356.101.24.2.1.1.9
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortUntaggedVlan
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.10
+      type: DisplayString
+      help: Switch port untagged vlan. - 1.3.6.1.4.1.12356.101.24.2.1.1.10
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortPOE
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.11
+      type: gauge
+      help: Switch port PoE capability. - 1.3.6.1.4.1.12356.101.24.2.1.1.11
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+      enum_values:
+        0: notcapable
+        1: capable
+    - name: fgSwPortPOEStatus
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.12
+      type: gauge
+      help: Switch port PoE status. - 1.3.6.1.4.1.12356.101.24.2.1.1.12
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+      enum_values:
+        0: disable
+        1: enable
+    - name: fgSwPortPOEState
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.13
+      type: DisplayString
+      help: Switch port PoE state (disabled, searching, delivering-power, requesting-power,
+        fault). - 1.3.6.1.4.1.12356.101.24.2.1.1.13
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortPOEPower
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.14
+      type: DisplayString
+      help: Switch port PoE power in mW. - 1.3.6.1.4.1.12356.101.24.2.1.1.14
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgChassisVersion
+      oid: 1.3.6.1.4.1.12356.101.25.1.1
+      type: DisplayString
+      help: Current version of the Fortigate Chassis. - 1.3.6.1.4.1.12356.101.25.1.1
+    - name: fgSgWbEntIndex
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.1
+      type: gauge
+      help: Index that uniquely identifies a worker blade in the fgSgWorkerBladeTable.
+        - 1.3.6.1.4.1.12356.101.26.1.1.1.1
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbServiceGroupID
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.2
+      type: gauge
+      help: Service group identifier that this worker blade belongs to. - 1.3.6.1.4.1.12356.101.26.1.1.1.2
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbChassisID
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.3
+      type: gauge
+      help: Chassis identifier of the chassis this worker blade is installed in. -
+        1.3.6.1.4.1.12356.101.26.1.1.1.3
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSlotID
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.4
+      type: gauge
+      help: Slot identifier of the slot this worker blade is installed in. - 1.3.6.1.4.1.12356.101.26.1.1.1.4
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbState
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.5
+      type: gauge
+      help: State of this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.5
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+      enum_values:
+        1: unknown
+        2: dead
+        3: standby
+        4: active
+    - name: fgSgWbStatusMsg
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.6
+      type: DisplayString
+      help: Status message for this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.6
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbMaster
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.7
+      type: gauge
+      help: Indicates if this worker blade is the service group primary. - 1.3.6.1.4.1.12356.101.26.1.1.1.7
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+      enum_values:
+        0: "false"
+        1: "true"
+    - name: fgSgWbSysVersion
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.8
+      type: DisplayString
+      help: Firmware version of this worker blade - 1.3.6.1.4.1.12356.101.26.1.1.1.8
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysSerial
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.9
+      type: DisplayString
+      help: fnSysSerial serial number of this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.9
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysUpTime
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.10
+      type: gauge
+      help: MIB-2 system up time of this worker blade - 1.3.6.1.4.1.12356.101.26.1.1.1.10
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysCpuUsage
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.11
+      type: gauge
+      help: Current CPU usage (percentage) - 1.3.6.1.4.1.12356.101.26.1.1.1.11
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysMemUsage
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.12
+      type: gauge
+      help: Current memory utilization (percentage) - 1.3.6.1.4.1.12356.101.26.1.1.1.12
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbBaseLink
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.13
+      type: DisplayString
+      help: Status of base channel link to this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.13
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbFabricLink
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.14
+      type: DisplayString
+      help: Status of fabric channel link to this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.14
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbDataHb
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.15
+      type: DisplayString
+      help: Status of data heartbeat from this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.15
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbMgmtHb
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.16
+      type: DisplayString
+      help: Status of management heartbeat from this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.16
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntIndex
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.1
+      type: gauge
+      help: An index value that uniquely identifies a global EMS connection. - 1.3.6.1.4.1.12356.101.27.2.1.1.1
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.2
+      type: gauge
+      help: Whether the global EMS connection is enabled. - 1.3.6.1.4.1.12356.101.27.2.1.1.2
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+      enum_values:
+        1: disabled
+        2: enabled
+    - name: fgEmsGlobalEntConnectionName
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.3
+      type: DisplayString
+      help: Global EMS connection name. - 1.3.6.1.4.1.12356.101.27.2.1.1.3
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntConnectionStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.4
+      type: gauge
+      help: State of global EMS connection. - 1.3.6.1.4.1.12356.101.27.2.1.1.4
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+      enum_values:
+        0: disconnected
+        1: connecting
+        2: connected
+    - name: fgEmsGlobalEntLastCloseReason
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.5
+      type: gauge
+      help: Reason code for the last global EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.1.1.5
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntLastCloseReasonDesc
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.6
+      type: DisplayString
+      help: Reason for the last global EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.1.1.6
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsGlobalEntLastCloseTime
+      oid: 1.3.6.1.4.1.12356.101.27.2.1.1.7
+      type: gauge
+      help: Time since last global EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.1.1.7
+      indexes:
+      - labelname: fgEmsGlobalEntIndex
+        type: gauge
+    - name: fgEmsVdEntIndex
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.1
+      type: gauge
+      help: An index value that uniquely identifies an EMS connection. - 1.3.6.1.4.1.12356.101.27.2.2.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.2
+      type: gauge
+      help: Whether the EMS connection is enabled. - 1.3.6.1.4.1.12356.101.27.2.2.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+      enum_values:
+        1: disabled
+        2: enabled
+    - name: fgEmsVdEntConnectionName
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.3
+      type: DisplayString
+      help: EMS connection name. - 1.3.6.1.4.1.12356.101.27.2.2.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntConnectionStatus
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.4
+      type: gauge
+      help: State of EMS connection. - 1.3.6.1.4.1.12356.101.27.2.2.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+      enum_values:
+        0: disconnected
+        1: connecting
+        2: connected
+    - name: fgEmsVdEntLastCloseReason
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.5
+      type: gauge
+      help: Reason code for the last EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.2.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntLastCloseReasonDesc
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.6
+      type: DisplayString
+      help: Reason for the last EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.2.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fgEmsVdEntLastCloseTime
+      oid: 1.3.6.1.4.1.12356.101.27.2.2.1.7
+      type: gauge
+      help: Time since last EMS connection close. - 1.3.6.1.4.1.12356.101.27.2.2.1.7
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgEmsVdEntIndex
+        type: gauge
+    - name: fg5gModemNumber
+      oid: 1.3.6.1.4.1.12356.101.28.1.1
+      type: gauge
+      help: The number of internal Modems - 1.3.6.1.4.1.12356.101.28.1.1
+    - name: fg5gMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.2.1.1
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmDetected
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.2
+      type: gauge
+      help: Internal Modem Detected. - 1.3.6.1.4.1.12356.101.28.2.1.2
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fg5gMdmVendor
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.3
+      type: DisplayString
+      help: Vendor Name. - 1.3.6.1.4.1.12356.101.28.2.1.3
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmModel
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.4
+      type: DisplayString
+      help: Model Name. - 1.3.6.1.4.1.12356.101.28.2.1.4
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmRevision
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.5
+      type: DisplayString
+      help: Modem Firmware Revision. - 1.3.6.1.4.1.12356.101.28.2.1.5
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmImei
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.6
+      type: DisplayString
+      help: IMEI. - 1.3.6.1.4.1.12356.101.28.2.1.6
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmHwRevision
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.7
+      type: DisplayString
+      help: Hardware Revision. - 1.3.6.1.4.1.12356.101.28.2.1.7
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmMeid
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.8
+      type: DisplayString
+      help: MEID. - 1.3.6.1.4.1.12356.101.28.2.1.8
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmSwRev
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.9
+      type: DisplayString
+      help: Software Revision. - 1.3.6.1.4.1.12356.101.28.2.1.9
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmPriFwVer
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.10
+      type: DisplayString
+      help: PRI Firmware Version. - 1.3.6.1.4.1.12356.101.28.2.1.10
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmFwName
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.11
+      type: DisplayString
+      help: Modem Firmware Name. - 1.3.6.1.4.1.12356.101.28.2.1.11
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmOpMode
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.12
+      type: gauge
+      help: Modem Operation Mode - 1.3.6.1.4.1.12356.101.28.2.1.12
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+      enum_values:
+        0: online
+        1: lowPower
+        2: factoryTest
+        3: offLine
+        4: reset
+        5: shuttingDown
+        6: persistentLowPower
+        7: modeOnlyLowPower
+        255: unknown
+    - name: fg5gMdmTemperature
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.13
+      type: gauge
+      help: RSSI for CDMA. - 1.3.6.1.4.1.12356.101.28.2.1.13
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gNetworkMode
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.14
+      type: DisplayString
+      help: Modem Firmware Name. - 1.3.6.1.4.1.12356.101.28.2.1.14
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gSimMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.3.1.1
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gIdleSimState
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.2
+      type: DisplayString
+      help: Idle SIM status. - 1.3.6.1.4.1.12356.101.28.3.1.2
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gIdleSimIccid
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.3
+      type: DisplayString
+      help: Idle SIM ICCID. - 1.3.6.1.4.1.12356.101.28.3.1.3
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimState
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.4
+      type: DisplayString
+      help: Active SIM status. - 1.3.6.1.4.1.12356.101.28.3.1.4
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimIccid
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.5
+      type: DisplayString
+      help: Active SIM ICCID. - 1.3.6.1.4.1.12356.101.28.3.1.5
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimMsisdn
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.6
+      type: DisplayString
+      help: Active SIM MSISDN. - 1.3.6.1.4.1.12356.101.28.3.1.6
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimImsi
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.7
+      type: DisplayString
+      help: Active SIM IMSI. - 1.3.6.1.4.1.12356.101.28.3.1.7
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimCountry
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.8
+      type: DisplayString
+      help: Active SIM Carrier Country. - 1.3.6.1.4.1.12356.101.28.3.1.8
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimNetwork
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.9
+      type: DisplayString
+      help: Active SIM Carrier Network. - 1.3.6.1.4.1.12356.101.28.3.1.9
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimPinState
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.10
+      type: DisplayString
+      help: Active SIM PIN status. - 1.3.6.1.4.1.12356.101.28.3.1.10
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gSigMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.4.1.1
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigWcdmaRssi
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.2
+      type: gauge
+      help: RSSI for WCDMA. - 1.3.6.1.4.1.12356.101.28.4.1.2
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigWcdmaEcio
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.3
+      type: gauge
+      help: ECIO for WCDMA. - 1.3.6.1.4.1.12356.101.28.4.1.3
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteRssi
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.4
+      type: gauge
+      help: RSSI for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.4
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteRsrq
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.5
+      type: gauge
+      help: RSRQ for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.5
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteRsrp
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.6
+      type: gauge
+      help: RSRP for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.6
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteSnr
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.7
+      type: gauge
+      help: SNR for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.7
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSig5gRsrp
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.8
+      type: gauge
+      help: RSRP for 5G. - 1.3.6.1.4.1.12356.101.28.4.1.8
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSig5gSnr
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.9
+      type: gauge
+      help: SNR for 5G. - 1.3.6.1.4.1.12356.101.28.4.1.9
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gTrafMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.5.1.1
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.2
+      type: counter
+      help: Tx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.2
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.3
+      type: counter
+      help: Rx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.3
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.4
+      type: counter
+      help: Tx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.4
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.5
+      type: counter
+      help: Rx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.5
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.6
+      type: counter
+      help: Tx Packets Overflow. - 1.3.6.1.4.1.12356.101.28.5.1.6
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.7
+      type: counter
+      help: Rx Packets Olverflow. - 1.3.6.1.4.1.12356.101.28.5.1.7
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.8
+      type: counter
+      help: Tx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.8
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.9
+      type: counter
+      help: Rx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.9
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.10
+      type: counter
+      help: Tx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.10
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.11
+      type: counter
+      help: Rx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.11
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.12
+      type: counter
+      help: Tx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.12
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.13
+      type: counter
+      help: Rx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.13
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.14
+      type: counter
+      help: Tx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.14
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.15
+      type: counter
+      help: Rx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.15
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.16
+      type: counter
+      help: Tx Packets Overflow. - 1.3.6.1.4.1.12356.101.28.5.1.16
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.17
+      type: counter
+      help: Rx Packets Olverflow. - 1.3.6.1.4.1.12356.101.28.5.1.17
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.18
+      type: counter
+      help: Tx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.18
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.19
+      type: counter
+      help: Rx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.19
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.20
+      type: counter
+      help: Tx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.20
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.21
+      type: counter
+      help: Rx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.21
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gSessMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.1
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIfName
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.2
+      type: DisplayString
+      help: Interface Name of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.2
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gMtu
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.3
+      type: gauge
+      help: Wireless profile MTU of a data session on an internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.3
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gProfId
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.4
+      type: gauge
+      help: Wireless profile index of a data session on an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.4
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gProfName
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.5
+      type: DisplayString
+      help: Wireless profile name of a data session on an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.5
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gPdpType
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.6
+      type: gauge
+      help: Wireless profile PDP context type of a data session on an internal 5G
+        modem - 1.3.6.1.4.1.12356.101.28.6.1.6
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+      enum_values:
+        0: ipv4
+        1: ppp
+        2: ipv6
+        3: ipv4v6
+    - name: fg5gProfApn
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.7
+      type: DisplayString
+      help: Wireless profile APN name of a data session on an internal 5G modem. -
+        1.3.6.1.4.1.12356.101.28.6.1.7
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4SessionStatus
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.8
+      type: gauge
+      help: IPv4 Connection Status of a data session on an Internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.8
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: disconnected
+        2: connected
+        3: suspended
+        4: authenticating
+    - name: fg5gIpv4Addr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.9
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Address of a data session on an internal 5G modem
+        - 1.3.6.1.4.1.12356.101.28.6.1.9
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4GwAddr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.10
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Gateway Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.10
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4NetMask
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.11
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Net Mask of a data session on an internal 5G modem
+        - 1.3.6.1.4.1.12356.101.28.6.1.11
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4PriDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.12
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Primary DNS Server Address of a data session on
+        an internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.12
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4SecDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.13
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Secondary DNS Server Address of a data session on
+        an internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.13
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6SessionStatus
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.14
+      type: gauge
+      help: IPv6 Connection Status of a data session on an Internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.14
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: disconnected
+        2: connected
+        3: suspended
+        4: authenticating
+    - name: fg5gIpv6Addr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.15
+      type: OctetString
+      help: Wireless profile IPv6 Address of a data session on an internal 5G modem
+        - 1.3.6.1.4.1.12356.101.28.6.1.15
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6PrefLen
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.16
+      type: gauge
+      help: Wireless profile IPv6 Address Prefix of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.16
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6GwAddr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.17
+      type: OctetString
+      help: Wireless profile IPv6 Gateway Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.17
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6GwPrefLen
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.18
+      type: gauge
+      help: Wireless profile IPv6 Gateway Address Prefix of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.18
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6PriDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.19
+      type: OctetString
+      help: Wireless profile Primary DNS IPv6 Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.19
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6SecDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.20
+      type: OctetString
+      help: Wireless profile Secondary DNS IPv6 Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.20
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gGpsMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.7.1.1
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gGpsEnabled
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.2
+      type: gauge
+      help: Is GPS enabled. - 1.3.6.1.4.1.12356.101.28.7.1.2
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fg5gLatitude
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.3
+      type: DisplayString
+      help: Latitude. - 1.3.6.1.4.1.12356.101.28.7.1.3
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gLongitude
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.4
+      type: DisplayString
+      help: Longitude. - 1.3.6.1.4.1.12356.101.28.7.1.4
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gUtcTime
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.5
+      type: DisplayString
+      help: UTC Time. - 1.3.6.1.4.1.12356.101.28.7.1.5
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gLocalTime
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.6
+      type: DisplayString
+      help: Local Time. - 1.3.6.1.4.1.12356.101.28.7.1.6
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
     - name: fgVdNumber
       oid: 1.3.6.1.4.1.12356.101.3.1.1
       type: gauge
@@ -9133,6 +11356,1399 @@ modules:
       indexes:
       - labelname: fgVdEntIndex
         type: gauge
+  fg_internal5gmodemsinfo:
+    walk:
+    - 1.3.6.1.4.1.12356.101.28
+    metrics:
+    - name: fg5gModemNumber
+      oid: 1.3.6.1.4.1.12356.101.28.1.1
+      type: gauge
+      help: The number of internal Modems - 1.3.6.1.4.1.12356.101.28.1.1
+    - name: fg5gMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.2.1.1
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmDetected
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.2
+      type: gauge
+      help: Internal Modem Detected. - 1.3.6.1.4.1.12356.101.28.2.1.2
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fg5gMdmVendor
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.3
+      type: DisplayString
+      help: Vendor Name. - 1.3.6.1.4.1.12356.101.28.2.1.3
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmModel
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.4
+      type: DisplayString
+      help: Model Name. - 1.3.6.1.4.1.12356.101.28.2.1.4
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmRevision
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.5
+      type: DisplayString
+      help: Modem Firmware Revision. - 1.3.6.1.4.1.12356.101.28.2.1.5
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmImei
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.6
+      type: DisplayString
+      help: IMEI. - 1.3.6.1.4.1.12356.101.28.2.1.6
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmHwRevision
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.7
+      type: DisplayString
+      help: Hardware Revision. - 1.3.6.1.4.1.12356.101.28.2.1.7
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmMeid
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.8
+      type: DisplayString
+      help: MEID. - 1.3.6.1.4.1.12356.101.28.2.1.8
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmSwRev
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.9
+      type: DisplayString
+      help: Software Revision. - 1.3.6.1.4.1.12356.101.28.2.1.9
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmPriFwVer
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.10
+      type: DisplayString
+      help: PRI Firmware Version. - 1.3.6.1.4.1.12356.101.28.2.1.10
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmFwName
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.11
+      type: DisplayString
+      help: Modem Firmware Name. - 1.3.6.1.4.1.12356.101.28.2.1.11
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gMdmOpMode
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.12
+      type: gauge
+      help: Modem Operation Mode - 1.3.6.1.4.1.12356.101.28.2.1.12
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+      enum_values:
+        0: online
+        1: lowPower
+        2: factoryTest
+        3: offLine
+        4: reset
+        5: shuttingDown
+        6: persistentLowPower
+        7: modeOnlyLowPower
+        255: unknown
+    - name: fg5gMdmTemperature
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.13
+      type: gauge
+      help: RSSI for CDMA. - 1.3.6.1.4.1.12356.101.28.2.1.13
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gNetworkMode
+      oid: 1.3.6.1.4.1.12356.101.28.2.1.14
+      type: DisplayString
+      help: Modem Firmware Name. - 1.3.6.1.4.1.12356.101.28.2.1.14
+      indexes:
+      - labelname: fg5gMdmEntIndex
+        type: gauge
+    - name: fg5gSimMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.3.1.1
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gIdleSimState
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.2
+      type: DisplayString
+      help: Idle SIM status. - 1.3.6.1.4.1.12356.101.28.3.1.2
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gIdleSimIccid
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.3
+      type: DisplayString
+      help: Idle SIM ICCID. - 1.3.6.1.4.1.12356.101.28.3.1.3
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimState
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.4
+      type: DisplayString
+      help: Active SIM status. - 1.3.6.1.4.1.12356.101.28.3.1.4
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimIccid
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.5
+      type: DisplayString
+      help: Active SIM ICCID. - 1.3.6.1.4.1.12356.101.28.3.1.5
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimMsisdn
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.6
+      type: DisplayString
+      help: Active SIM MSISDN. - 1.3.6.1.4.1.12356.101.28.3.1.6
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimImsi
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.7
+      type: DisplayString
+      help: Active SIM IMSI. - 1.3.6.1.4.1.12356.101.28.3.1.7
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimCountry
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.8
+      type: DisplayString
+      help: Active SIM Carrier Country. - 1.3.6.1.4.1.12356.101.28.3.1.8
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimNetwork
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.9
+      type: DisplayString
+      help: Active SIM Carrier Network. - 1.3.6.1.4.1.12356.101.28.3.1.9
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gActiveSimPinState
+      oid: 1.3.6.1.4.1.12356.101.28.3.1.10
+      type: DisplayString
+      help: Active SIM PIN status. - 1.3.6.1.4.1.12356.101.28.3.1.10
+      indexes:
+      - labelname: fg5gSimMdmEntIndex
+        type: gauge
+    - name: fg5gSigMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.4.1.1
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigWcdmaRssi
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.2
+      type: gauge
+      help: RSSI for WCDMA. - 1.3.6.1.4.1.12356.101.28.4.1.2
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigWcdmaEcio
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.3
+      type: gauge
+      help: ECIO for WCDMA. - 1.3.6.1.4.1.12356.101.28.4.1.3
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteRssi
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.4
+      type: gauge
+      help: RSSI for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.4
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteRsrq
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.5
+      type: gauge
+      help: RSRQ for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.5
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteRsrp
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.6
+      type: gauge
+      help: RSRP for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.6
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSigLteSnr
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.7
+      type: gauge
+      help: SNR for LTE. - 1.3.6.1.4.1.12356.101.28.4.1.7
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSig5gRsrp
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.8
+      type: gauge
+      help: RSRP for 5G. - 1.3.6.1.4.1.12356.101.28.4.1.8
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gSig5gSnr
+      oid: 1.3.6.1.4.1.12356.101.28.4.1.9
+      type: gauge
+      help: SNR for 5G. - 1.3.6.1.4.1.12356.101.28.4.1.9
+      indexes:
+      - labelname: fg5gSigMdmEntIndex
+        type: gauge
+    - name: fg5gTrafMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.5.1.1
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.2
+      type: counter
+      help: Tx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.2
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.3
+      type: counter
+      help: Rx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.3
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.4
+      type: counter
+      help: Tx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.4
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.5
+      type: counter
+      help: Rx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.5
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.6
+      type: counter
+      help: Tx Packets Overflow. - 1.3.6.1.4.1.12356.101.28.5.1.6
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.7
+      type: counter
+      help: Rx Packets Olverflow. - 1.3.6.1.4.1.12356.101.28.5.1.7
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.8
+      type: counter
+      help: Tx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.8
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.9
+      type: counter
+      help: Rx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.9
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4TxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.10
+      type: counter
+      help: Tx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.10
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4RxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.11
+      type: counter
+      help: Rx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.11
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.12
+      type: counter
+      help: Tx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.12
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.13
+      type: counter
+      help: Rx Packets OK. - 1.3.6.1.4.1.12356.101.28.5.1.13
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.14
+      type: counter
+      help: Tx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.14
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.15
+      type: counter
+      help: Rx Packets Error. - 1.3.6.1.4.1.12356.101.28.5.1.15
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.16
+      type: counter
+      help: Tx Packets Overflow. - 1.3.6.1.4.1.12356.101.28.5.1.16
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.17
+      type: counter
+      help: Rx Packets Olverflow. - 1.3.6.1.4.1.12356.101.28.5.1.17
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.18
+      type: counter
+      help: Tx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.18
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.19
+      type: counter
+      help: Rx Bytes OK. - 1.3.6.1.4.1.12356.101.28.5.1.19
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6TxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.20
+      type: counter
+      help: Tx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.20
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6RxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.28.5.1.21
+      type: counter
+      help: Rx Packets Dropped. - 1.3.6.1.4.1.12356.101.28.5.1.21
+      indexes:
+      - labelname: fg5gTrafMdmEntIndex
+        type: gauge
+    - name: fg5gSessMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.1
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIfName
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.2
+      type: DisplayString
+      help: Interface Name of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.2
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gMtu
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.3
+      type: gauge
+      help: Wireless profile MTU of a data session on an internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.3
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gProfId
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.4
+      type: gauge
+      help: Wireless profile index of a data session on an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.4
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gProfName
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.5
+      type: DisplayString
+      help: Wireless profile name of a data session on an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.6.1.5
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gPdpType
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.6
+      type: gauge
+      help: Wireless profile PDP context type of a data session on an internal 5G
+        modem - 1.3.6.1.4.1.12356.101.28.6.1.6
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+      enum_values:
+        0: ipv4
+        1: ppp
+        2: ipv6
+        3: ipv4v6
+    - name: fg5gProfApn
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.7
+      type: DisplayString
+      help: Wireless profile APN name of a data session on an internal 5G modem. -
+        1.3.6.1.4.1.12356.101.28.6.1.7
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4SessionStatus
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.8
+      type: gauge
+      help: IPv4 Connection Status of a data session on an Internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.8
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: disconnected
+        2: connected
+        3: suspended
+        4: authenticating
+    - name: fg5gIpv4Addr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.9
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Address of a data session on an internal 5G modem
+        - 1.3.6.1.4.1.12356.101.28.6.1.9
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4GwAddr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.10
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Gateway Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.10
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4NetMask
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.11
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Net Mask of a data session on an internal 5G modem
+        - 1.3.6.1.4.1.12356.101.28.6.1.11
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4PriDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.12
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Primary DNS Server Address of a data session on
+        an internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.12
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv4SecDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.13
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Secondary DNS Server Address of a data session on
+        an internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.13
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6SessionStatus
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.14
+      type: gauge
+      help: IPv6 Connection Status of a data session on an Internal 5G modem - 1.3.6.1.4.1.12356.101.28.6.1.14
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: disconnected
+        2: connected
+        3: suspended
+        4: authenticating
+    - name: fg5gIpv6Addr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.15
+      type: OctetString
+      help: Wireless profile IPv6 Address of a data session on an internal 5G modem
+        - 1.3.6.1.4.1.12356.101.28.6.1.15
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6PrefLen
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.16
+      type: gauge
+      help: Wireless profile IPv6 Address Prefix of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.16
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6GwAddr
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.17
+      type: OctetString
+      help: Wireless profile IPv6 Gateway Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.17
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6GwPrefLen
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.18
+      type: gauge
+      help: Wireless profile IPv6 Gateway Address Prefix of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.18
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6PriDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.19
+      type: OctetString
+      help: Wireless profile Primary DNS IPv6 Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.19
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gIpv6SecDns
+      oid: 1.3.6.1.4.1.12356.101.28.6.1.20
+      type: OctetString
+      help: Wireless profile Secondary DNS IPv6 Address of a data session on an internal
+        5G modem - 1.3.6.1.4.1.12356.101.28.6.1.20
+      indexes:
+      - labelname: fg5gSessMdmEntIndex
+        type: gauge
+    - name: fg5gGpsMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal 5G modem. - 1.3.6.1.4.1.12356.101.28.7.1.1
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gGpsEnabled
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.2
+      type: gauge
+      help: Is GPS enabled. - 1.3.6.1.4.1.12356.101.28.7.1.2
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fg5gLatitude
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.3
+      type: DisplayString
+      help: Latitude. - 1.3.6.1.4.1.12356.101.28.7.1.3
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gLongitude
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.4
+      type: DisplayString
+      help: Longitude. - 1.3.6.1.4.1.12356.101.28.7.1.4
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gUtcTime
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.5
+      type: DisplayString
+      help: UTC Time. - 1.3.6.1.4.1.12356.101.28.7.1.5
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+    - name: fg5gLocalTime
+      oid: 1.3.6.1.4.1.12356.101.28.7.1.6
+      type: DisplayString
+      help: Local Time. - 1.3.6.1.4.1.12356.101.28.7.1.6
+      indexes:
+      - labelname: fg5gGpsMdmEntIndex
+        type: gauge
+  fg_internalltemodemsinfo:
+    walk:
+    - 1.3.6.1.4.1.12356.101.19
+    metrics:
+    - name: fgMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.1.1.1
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmDetected
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.2
+      type: gauge
+      help: Internal Modem Detected. - 1.3.6.1.4.1.12356.101.19.1.1.2
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fgMdmVendor
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.3
+      type: DisplayString
+      help: Vendor Name. - 1.3.6.1.4.1.12356.101.19.1.1.3
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmModel
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.4
+      type: DisplayString
+      help: Model Name. - 1.3.6.1.4.1.12356.101.19.1.1.4
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmRevision
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.5
+      type: DisplayString
+      help: Modem Firmware Revision. - 1.3.6.1.4.1.12356.101.19.1.1.5
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmMsisdn
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.6
+      type: DisplayString
+      help: MSISDN. - 1.3.6.1.4.1.12356.101.19.1.1.6
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmEsn
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.7
+      type: DisplayString
+      help: ESN. - 1.3.6.1.4.1.12356.101.19.1.1.7
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmImei
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.8
+      type: DisplayString
+      help: IMEI. - 1.3.6.1.4.1.12356.101.19.1.1.8
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmHwRevision
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.9
+      type: DisplayString
+      help: Hardware Revision. - 1.3.6.1.4.1.12356.101.19.1.1.9
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmMeid
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.10
+      type: DisplayString
+      help: MEID. - 1.3.6.1.4.1.12356.101.19.1.1.10
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmSwRev
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.11
+      type: DisplayString
+      help: Software Revision. - 1.3.6.1.4.1.12356.101.19.1.1.11
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmSku
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.12
+      type: DisplayString
+      help: SKU. - 1.3.6.1.4.1.12356.101.19.1.1.12
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmFsn
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.13
+      type: DisplayString
+      help: FSN. - 1.3.6.1.4.1.12356.101.19.1.1.13
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmPrlVer
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.14
+      type: DisplayString
+      help: Prl Version. - 1.3.6.1.4.1.12356.101.19.1.1.14
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmFwVer
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.15
+      type: DisplayString
+      help: Modem Firmware Version. - 1.3.6.1.4.1.12356.101.19.1.1.15
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmPriFwVer
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.16
+      type: DisplayString
+      help: PRI Firmware Version. - 1.3.6.1.4.1.12356.101.19.1.1.16
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmCarrierAbbr
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.17
+      type: DisplayString
+      help: Modem Carrier Abbriviation. - 1.3.6.1.4.1.12356.101.19.1.1.17
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmActState
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.18
+      type: gauge
+      help: Modem Activation State - 1.3.6.1.4.1.12356.101.19.1.1.18
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+      enum_values:
+        0: notActivated
+        1: activated
+        2: connecting
+        3: connected
+        4: otaspAuthenticated
+        5: otaspNamDownloaded
+        6: otaspMdnDownloaded
+        7: otaspImsiDownloaded
+        8: otaspPrlDownloaded
+        9: otaspSpcDownloaded
+        10: otaspSettingsCmted
+    - name: fgMdmOpMode
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.19
+      type: gauge
+      help: Modem Operation Mode - 1.3.6.1.4.1.12356.101.19.1.1.19
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+      enum_values:
+        0: online
+        1: lowPower
+        2: factoryTest
+        3: offLine
+        4: reset
+        5: shuttingDown
+        6: persistentLowPower
+        7: modeOnlyLowPower
+        255: unknown
+    - name: fgMdmLacTac
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.20
+      type: DisplayString
+      help: Modem LAC/TAC Code. - 1.3.6.1.4.1.12356.101.19.1.1.20
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmActBand
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.21
+      type: DisplayString
+      help: Modem Active Band In Use. - 1.3.6.1.4.1.12356.101.19.1.1.21
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmCellId
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.22
+      type: DisplayString
+      help: Modem Network Cell ID. - 1.3.6.1.4.1.12356.101.19.1.1.22
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgMdmRssi
+      oid: 1.3.6.1.4.1.12356.101.19.1.1.23
+      type: gauge
+      help: Modem Current Rssi. - 1.3.6.1.4.1.12356.101.19.1.1.23
+      indexes:
+      - labelname: fgMdmEntIndex
+        type: gauge
+    - name: fgSimEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.1
+      type: gauge
+      help: Index used to identify the instance of a SIM card. - 1.3.6.1.4.1.12356.101.19.2.1.1
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.2
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.2.1.2
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimState
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.3
+      type: gauge
+      help: SIM card state - 1.3.6.1.4.1.12356.101.19.2.1.3
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+      enum_values:
+        0: initialized
+        1: lockedOrFailed
+        2: notPresent
+        3: reserved
+        255: unknown
+    - name: fgSimIccid
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.4
+      type: DisplayString
+      help: ICCID. - 1.3.6.1.4.1.12356.101.19.2.1.4
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimImsi
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.5
+      type: DisplayString
+      help: IMSI. - 1.3.6.1.4.1.12356.101.19.2.1.5
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimCountry
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.6
+      type: DisplayString
+      help: Carrier Country. - 1.3.6.1.4.1.12356.101.19.2.1.6
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSimNetwork
+      oid: 1.3.6.1.4.1.12356.101.19.2.1.7
+      type: DisplayString
+      help: Carrier Network. - 1.3.6.1.4.1.12356.101.19.2.1.7
+      indexes:
+      - labelname: fgSimEntIndex
+        type: gauge
+    - name: fgSigMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.3.1.1
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgCdmaRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.2
+      type: gauge
+      help: RSSI for CDMA. - 1.3.6.1.4.1.12356.101.19.3.1.2
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgCdmaEcio
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.3
+      type: gauge
+      help: ECIO for CDMA. - 1.3.6.1.4.1.12356.101.19.3.1.3
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.4
+      type: gauge
+      help: RSSI for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.4
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrEcio
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.5
+      type: gauge
+      help: ECIO for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.5
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrSinr
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.6
+      type: gauge
+      help: SINR for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.6
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgHdrIo
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.7
+      type: gauge
+      help: IO for HDR. - 1.3.6.1.4.1.12356.101.19.3.1.7
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgGsm
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.8
+      type: gauge
+      help: GSM Signal Strength. - 1.3.6.1.4.1.12356.101.19.3.1.8
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgWcdmaRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.9
+      type: gauge
+      help: RSSI for WCDMA. - 1.3.6.1.4.1.12356.101.19.3.1.9
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgWcdmaEcio
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.10
+      type: gauge
+      help: ECIO for WCDMA. - 1.3.6.1.4.1.12356.101.19.3.1.10
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteRssi
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.11
+      type: gauge
+      help: RSSI for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.11
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteRsrq
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.12
+      type: gauge
+      help: RSRQ for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.12
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteRsrp
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.13
+      type: gauge
+      help: RSRP for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.13
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgLteSnr
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.14
+      type: gauge
+      help: SNR for LTE. - 1.3.6.1.4.1.12356.101.19.3.1.14
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgTdma
+      oid: 1.3.6.1.4.1.12356.101.19.3.1.15
+      type: gauge
+      help: TDMA Signal Strength. - 1.3.6.1.4.1.12356.101.19.3.1.15
+      indexes:
+      - labelname: fgSigMdmEntIndex
+        type: gauge
+    - name: fgTrafMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.4.1.1
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.2
+      type: counter
+      help: Tx Packets OK. - 1.3.6.1.4.1.12356.101.19.4.1.2
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.3
+      type: counter
+      help: Rx Packets OK. - 1.3.6.1.4.1.12356.101.19.4.1.3
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.4
+      type: counter
+      help: Tx Packets Error. - 1.3.6.1.4.1.12356.101.19.4.1.4
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksErr
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.5
+      type: counter
+      help: Rx Packets Error. - 1.3.6.1.4.1.12356.101.19.4.1.5
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.6
+      type: counter
+      help: Tx Packets Overflow. - 1.3.6.1.4.1.12356.101.19.4.1.6
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksOverflow
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.7
+      type: counter
+      help: Rx Packets Olverflow. - 1.3.6.1.4.1.12356.101.19.4.1.7
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.8
+      type: counter
+      help: Tx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.8
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.9
+      type: counter
+      help: Rx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.9
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgLastCallTxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.10
+      type: counter
+      help: Last Call Tx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.10
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgLastCallRxBytesOK
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.11
+      type: counter
+      help: Last Call Rx Bytes OK. - 1.3.6.1.4.1.12356.101.19.4.1.11
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgTxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.12
+      type: counter
+      help: Tx Packets Dropped. - 1.3.6.1.4.1.12356.101.19.4.1.12
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgRxPacksDrop
+      oid: 1.3.6.1.4.1.12356.101.19.4.1.13
+      type: counter
+      help: Rx Packets Dropped. - 1.3.6.1.4.1.12356.101.19.4.1.13
+      indexes:
+      - labelname: fgTrafMdmEntIndex
+        type: gauge
+    - name: fgLteSessEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.1
+      type: gauge
+      help: Index used to identify the instance of a data session on an internal LTE
+        modem. - 1.3.6.1.4.1.12356.101.19.5.1.1
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fgSessMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.2
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.2
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIfName
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.3
+      type: DisplayString
+      help: Interface Name of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.3
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteSessConnStat
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.4
+      type: gauge
+      help: Connection Status of a data session on an Internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.4
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: disconnected
+        2: connected
+        3: suspended
+        4: authenticating
+    - name: fdLteProfId
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.5
+      type: gauge
+      help: Wireless profile index of a data session on an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.5
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteProfName
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.6
+      type: DisplayString
+      help: Wireless profile name of a data session on an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.5.1.6
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteProfType
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.7
+      type: gauge
+      help: Wireless profile type of a data session on an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.7
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: lpt3gpp
+        1: lpt3gpp2
+    - name: fdLtePdpType
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.8
+      type: gauge
+      help: Wireless profile PDP context type of a data session on an internal LTE
+        modem - 1.3.6.1.4.1.12356.101.19.5.1.8
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: ipv4
+        1: ppp
+        2: ipv6
+        3: ipv4v6
+    - name: fdLteProfApn
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.9
+      type: DisplayString
+      help: Wireless profile APN name of a data session on an internal LTE modem.
+        - 1.3.6.1.4.1.12356.101.19.5.1.9
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteProfIpFamily
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.10
+      type: gauge
+      help: Wireless profile IP Family of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.10
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        4: ipv4
+        6: ipv6
+        8: unspecified
+    - name: fdLteIpv4Addr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.11
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Address of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.11
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4GwAddr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.12
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Gateway Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.12
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4NetMask
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.13
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Net Mask of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.13
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4PriDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.14
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Primary DNS Server Address of a data session on
+        an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.14
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv4SecDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.15
+      type: InetAddressIPv4
+      help: Wireless profile IPv4 Secondary DNS Server Address of a data session on
+        an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.15
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6Addr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.16
+      type: OctetString
+      help: Wireless profile IPv6 Address of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.16
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6PrefLen
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.17
+      type: gauge
+      help: Wireless profile IPv6 Address Prefix of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.17
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6GwAddr
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.18
+      type: OctetString
+      help: Wireless profile IPv6 Gateway Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.18
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6GwPrefLen
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.19
+      type: gauge
+      help: Wireless profile IPv6 Gateway Address Prefix of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.19
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6PriDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.20
+      type: OctetString
+      help: Wireless profile Primary DNS IPv6 Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.20
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteIpv6SecDns
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.21
+      type: OctetString
+      help: Wireless profile Secondary DNS IPv6 Address of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.21
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteMtu
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.22
+      type: gauge
+      help: Wireless profile MTU of a data session on an internal LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.22
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+    - name: fdLteAutoConn
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.23
+      type: gauge
+      help: Wireless profile auto connection status of a data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.23
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: disabled
+        1: enabled
+        2: paused
+    - name: fdLteNetType
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.24
+      type: gauge
+      help: Wireless profile network type of a data session on an internal LTE modem
+        - 1.3.6.1.4.1.12356.101.19.5.1.24
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        -1: unknown
+        1: cdma1x
+        2: evdo
+        3: gsm
+        4: umts
+        5: evdoReva
+        6: edge
+        7: hsdpa
+        8: hsupa
+        9: hsdpaHsupa
+        10: lte
+        11: ehrpd
+        12: hsdpaPlus
+        13: hsdpaPlusHsupa
+        14: dchsdpaPlus
+        15: dchspdaPlusHsupa
+    - name: fdLteNetTypeLas
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.25
+      type: gauge
+      help: Wireless profile network type of the last data session on an internal
+        LTE modem - 1.3.6.1.4.1.12356.101.19.5.1.25
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        -1: unknown
+        1: cdma1x
+        2: evdo
+        3: gsm
+        4: umts
+        5: evdoReva
+        6: edge
+        7: hsdpa
+        8: hsupa
+        9: hsdpaHsupa
+        10: lte
+        11: ehrpd
+        12: hsdpaPlus
+        13: hsdpaPlusHsupa
+        14: dchsdpaPlus
+        15: dchspdaPlusHsupa
+    - name: fdLteLinkProto
+      oid: 1.3.6.1.4.1.12356.101.19.5.1.26
+      type: gauge
+      help: Wireless profile data link protocol of a data session on an internal LTE
+        modem - 1.3.6.1.4.1.12356.101.19.5.1.26
+      indexes:
+      - labelname: fgLteSessEntIndex
+        type: gauge
+      enum_values:
+        0: unknown
+        1: ieee8023
+        2: rawIp
+    - name: fgGpsMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem, here it
+        is always 1. - 1.3.6.1.4.1.12356.101.19.6.1.1
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgGpsEnabled
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.2
+      type: gauge
+      help: Is GPS daemon enabled. - 1.3.6.1.4.1.12356.101.19.6.1.2
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fgLatitude
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.3
+      type: DisplayString
+      help: Latitude. - 1.3.6.1.4.1.12356.101.19.6.1.3
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgLongitude
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.4
+      type: DisplayString
+      help: Longitude. - 1.3.6.1.4.1.12356.101.19.6.1.4
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgUtcTime
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.5
+      type: DisplayString
+      help: UTC Time. - 1.3.6.1.4.1.12356.101.19.6.1.5
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgLocalTime
+      oid: 1.3.6.1.4.1.12356.101.19.6.1.6
+      type: DisplayString
+      help: Local Time. - 1.3.6.1.4.1.12356.101.19.6.1.6
+      indexes:
+      - labelname: fgGpsMdmEntIndex
+        type: gauge
+    - name: fgDatausageMdmEntIndex
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.1
+      type: gauge
+      help: Index used to identify the instance of an internal LTE modem. - 1.3.6.1.4.1.12356.101.19.7.1.1
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
+    - name: fgDatausageEnabled
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.2
+      type: gauge
+      help: Data usage tracking enabled. - 1.3.6.1.4.1.12356.101.19.7.1.2
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
+      enum_values:
+        0: "no"
+        1: "yes"
+    - name: fgDataOut
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.3
+      type: counter
+      help: Bytes Out. - 1.3.6.1.4.1.12356.101.19.7.1.3
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
+    - name: fgDataIn
+      oid: 1.3.6.1.4.1.12356.101.19.7.1.4
+      type: counter
+      help: Bytes In. - 1.3.6.1.4.1.12356.101.19.7.1.4
+      indexes:
+      - labelname: fgDatausageMdmEntIndex
+        type: gauge
   fg_intf:
     walk:
     - 1.3.6.1.4.1.12356.101.7
@@ -9683,6 +13299,523 @@ modules:
       help: The virtual domain the administrator belongs to - 1.3.6.1.4.1.12356.101.6.1.2.1.1.1
       indexes:
       - labelname: fnAdminIndex
+        type: gauge
+  fg_npu:
+    walk:
+    - 1.3.6.1.4.1.12356.101.20
+    metrics:
+    - name: fgNPUNumber
+      oid: 1.3.6.1.4.1.12356.101.20.1.1
+      type: gauge
+      help: The number of NPUs in NPUTable - 1.3.6.1.4.1.12356.101.20.1.1
+    - name: fgNPUName
+      oid: 1.3.6.1.4.1.12356.101.20.1.2
+      type: DisplayString
+      help: Name of the NPU - 1.3.6.1.4.1.12356.101.20.1.2
+    - name: fgNPUDrvDriftSum
+      oid: 1.3.6.1.4.1.12356.101.20.1.3
+      type: gauge
+      help: Summation of driver session drift counters(fgNPUDrvDrift) - 1.3.6.1.4.1.12356.101.20.1.3
+    - name: fgNPUEntIndex
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.1
+      type: gauge
+      help: NPU index used to uniquely identify NPU in the system. - 1.3.6.1.4.1.12356.101.20.2.1.1.1
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+    - name: fgNPUSessionTblSize
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.2
+      type: gauge
+      help: Size of session table in the NPU - 1.3.6.1.4.1.12356.101.20.2.1.1.2
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+    - name: fgNPUSessionCount
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.3
+      type: gauge
+      help: Number of active sessions in the NPU - 1.3.6.1.4.1.12356.101.20.2.1.1.3
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+    - name: fgNPUDrvDrift
+      oid: 1.3.6.1.4.1.12356.101.20.2.1.1.4
+      type: gauge
+      help: Difference of session count between driver and hardware - 1.3.6.1.4.1.12356.101.20.2.1.1.4
+      indexes:
+      - labelname: fgNPUEntIndex
+        type: gauge
+  fg_servicegroupworkerblades:
+    walk:
+    - 1.3.6.1.4.1.12356.101.26
+    metrics:
+    - name: fgSgWbEntIndex
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.1
+      type: gauge
+      help: Index that uniquely identifies a worker blade in the fgSgWorkerBladeTable.
+        - 1.3.6.1.4.1.12356.101.26.1.1.1.1
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbServiceGroupID
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.2
+      type: gauge
+      help: Service group identifier that this worker blade belongs to. - 1.3.6.1.4.1.12356.101.26.1.1.1.2
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbChassisID
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.3
+      type: gauge
+      help: Chassis identifier of the chassis this worker blade is installed in. -
+        1.3.6.1.4.1.12356.101.26.1.1.1.3
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSlotID
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.4
+      type: gauge
+      help: Slot identifier of the slot this worker blade is installed in. - 1.3.6.1.4.1.12356.101.26.1.1.1.4
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbState
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.5
+      type: gauge
+      help: State of this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.5
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+      enum_values:
+        1: unknown
+        2: dead
+        3: standby
+        4: active
+    - name: fgSgWbStatusMsg
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.6
+      type: DisplayString
+      help: Status message for this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.6
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbMaster
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.7
+      type: gauge
+      help: Indicates if this worker blade is the service group primary. - 1.3.6.1.4.1.12356.101.26.1.1.1.7
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+      enum_values:
+        0: "false"
+        1: "true"
+    - name: fgSgWbSysVersion
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.8
+      type: DisplayString
+      help: Firmware version of this worker blade - 1.3.6.1.4.1.12356.101.26.1.1.1.8
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysSerial
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.9
+      type: DisplayString
+      help: fnSysSerial serial number of this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.9
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysUpTime
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.10
+      type: gauge
+      help: MIB-2 system up time of this worker blade - 1.3.6.1.4.1.12356.101.26.1.1.1.10
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysCpuUsage
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.11
+      type: gauge
+      help: Current CPU usage (percentage) - 1.3.6.1.4.1.12356.101.26.1.1.1.11
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbSysMemUsage
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.12
+      type: gauge
+      help: Current memory utilization (percentage) - 1.3.6.1.4.1.12356.101.26.1.1.1.12
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbBaseLink
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.13
+      type: DisplayString
+      help: Status of base channel link to this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.13
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbFabricLink
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.14
+      type: DisplayString
+      help: Status of fabric channel link to this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.14
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbDataHb
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.15
+      type: DisplayString
+      help: Status of data heartbeat from this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.15
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+    - name: fgSgWbMgmtHb
+      oid: 1.3.6.1.4.1.12356.101.26.1.1.1.16
+      type: DisplayString
+      help: Status of management heartbeat from this worker blade. - 1.3.6.1.4.1.12356.101.26.1.1.1.16
+      indexes:
+      - labelname: fgSgWbEntIndex
+        type: gauge
+  fg_sw:
+    walk:
+    - 1.3.6.1.4.1.12356.101.24
+    metrics:
+    - name: fgSwDevicePlatform
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.1
+      type: gauge
+      help: Switch device platform type. - 1.3.6.1.4.1.12356.101.24.1.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceId
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.2
+      type: gauge
+      help: Switch device ID. - 1.3.6.1.4.1.12356.101.24.1.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceSerialNum
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.3
+      type: DisplayString
+      help: Switch device serial number. - 1.3.6.1.4.1.12356.101.24.1.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceName
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.4
+      type: DisplayString
+      help: Switch device name. - 1.3.6.1.4.1.12356.101.24.1.1.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceVersion
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.5
+      type: DisplayString
+      help: Switch device software version. - 1.3.6.1.4.1.12356.101.24.1.1.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceAuthorized
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.6
+      type: gauge
+      help: Switch device connection admin state. - 1.3.6.1.4.1.12356.101.24.1.1.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+      enum_values:
+        0: discovered
+        1: disabled
+        2: authorized
+    - name: fgSwDeviceStatus
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.7
+      type: gauge
+      help: Switch device connection status. - 1.3.6.1.4.1.12356.101.24.1.1.1.7
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+      enum_values:
+        0: down
+        1: up
+    - name: fgSwDeviceJoinTime
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.8
+      type: gauge
+      help: Time switch device become online. - 1.3.6.1.4.1.12356.101.24.1.1.1.8
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceIp
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.9
+      type: InetAddressIPv4
+      help: Switch device IP address. - 1.3.6.1.4.1.12356.101.24.1.1.1.9
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceFlag
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.10
+      type: DisplayString
+      help: Switch device transaction flag (C=config sync, U=upgrading, S=staged,
+        D=delay reboot pending, E=config sync error). - 1.3.6.1.4.1.12356.101.24.1.1.1.10
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwCpu
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.11
+      type: gauge
+      help: Switch CPU usage percentage. - 1.3.6.1.4.1.12356.101.24.1.1.1.11
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwMemory
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.12
+      type: gauge
+      help: Switch memory usage percentage. - 1.3.6.1.4.1.12356.101.24.1.1.1.12
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwDeviceIpv6
+      oid: 1.3.6.1.4.1.12356.101.24.1.1.1.13
+      type: OctetString
+      help: Switch device IPv6 address. - 1.3.6.1.4.1.12356.101.24.1.1.1.13
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwDevicePlatform
+        type: gauge
+      - labelname: fgSwDeviceId
+        type: gauge
+    - name: fgSwPortSwitchPlatform
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.1
+      type: gauge
+      help: Switch port platform type. - 1.3.6.1.4.1.12356.101.24.2.1.1.1
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortSwitchId
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.2
+      type: gauge
+      help: Switch port ID. - 1.3.6.1.4.1.12356.101.24.2.1.1.2
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortNum
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.3
+      type: gauge
+      help: Switch port logical number. - 1.3.6.1.4.1.12356.101.24.2.1.1.3
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortSwitchSerialNum
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.4
+      type: DisplayString
+      help: Switch port serial number. - 1.3.6.1.4.1.12356.101.24.2.1.1.4
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortName
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.5
+      type: DisplayString
+      help: Switch port name. - 1.3.6.1.4.1.12356.101.24.2.1.1.5
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortStatus
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.6
+      type: gauge
+      help: Switch port status. - 1.3.6.1.4.1.12356.101.24.2.1.1.6
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+      enum_values:
+        0: down
+        1: up
+    - name: fgSwPortSpeedDuplex
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.7
+      type: DisplayString
+      help: Switch port speed. - 1.3.6.1.4.1.12356.101.24.2.1.1.7
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortNativeVlan
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.8
+      type: gauge
+      help: Switch port native vlan. - 1.3.6.1.4.1.12356.101.24.2.1.1.8
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortAllowedVlan
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.9
+      type: DisplayString
+      help: Switch port allowed vlan. - 1.3.6.1.4.1.12356.101.24.2.1.1.9
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortUntaggedVlan
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.10
+      type: DisplayString
+      help: Switch port untagged vlan. - 1.3.6.1.4.1.12356.101.24.2.1.1.10
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortPOE
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.11
+      type: gauge
+      help: Switch port PoE capability. - 1.3.6.1.4.1.12356.101.24.2.1.1.11
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+      enum_values:
+        0: notcapable
+        1: capable
+    - name: fgSwPortPOEStatus
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.12
+      type: gauge
+      help: Switch port PoE status. - 1.3.6.1.4.1.12356.101.24.2.1.1.12
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+      enum_values:
+        0: disable
+        1: enable
+    - name: fgSwPortPOEState
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.13
+      type: DisplayString
+      help: Switch port PoE state (disabled, searching, delivering-power, requesting-power,
+        fault). - 1.3.6.1.4.1.12356.101.24.2.1.1.13
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
+        type: gauge
+    - name: fgSwPortPOEPower
+      oid: 1.3.6.1.4.1.12356.101.24.2.1.1.14
+      type: DisplayString
+      help: Switch port PoE power in mW. - 1.3.6.1.4.1.12356.101.24.2.1.1.14
+      indexes:
+      - labelname: fgVdEntIndex
+        type: gauge
+      - labelname: fgSwPortSwitchPlatform
+        type: gauge
+      - labelname: fgSwPortSwitchId
+        type: gauge
+      - labelname: fgSwPortNum
         type: gauge
   fg_system:
     walk:
